@@ -9,7 +9,7 @@ In addition to standard scientific packages (scipy, matplotlib), this code requi
 Electrophysiological data recorded in retina ganglion cells and confocal images
 (DOI: ) must be
 [downloaded]() into the folder
-`shared/data/`.
+`/data/`.
 
 ### Measure of AIS geometry
 
