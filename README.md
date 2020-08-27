@@ -96,6 +96,7 @@ Results stored in: `simulations data/fig7/`\
 ## Adaptation of the axial current
 
 * `fig8.py`: adaptation of the axial current at spike initiation.\
+
 Measure of the voltage threshold and peak axial current during adaptation: `adaptation_analysis_with_PN.py` for the cells with P/5 protocol and `adaptation_analysis_no_PN.py` for the other cells (before 20190611)\
 Results are stored in: `RGC_adaptation.xlsx`\
 
@@ -108,17 +109,20 @@ Individual Vth vs Ip curves are fitted in a separate script: `covariation_during
 Curves are stored in: `RGC_adaptation_covariation.npz`\
 
 * `fig9.py`: adaptation of the axial current at threshold\
+
 Measure of the axial current near threshold and IV curve below threshold during adaptation: `adaptation_threshold_current_analysis.py`\
 Currents are stored in: `RGC_threshold_current_adaptation.xlsx`\
 IV curves are stored in: `RGC_IV_curves_below_threshold_adaptation.npz`\
 
 * `fig10.py`: compensation of current attenuation\
+
 Measure of the voltage threshold and peak axial current during adaptation: `adaptation_analysis_with_PN.py` for the cells with P/5 protocol and `adaptation_analysis_no_PN.py` for the other cells (before 20190611)\
 Results are stored in: `RGC_adaptation.xlsx`\
 
 ## Methods
 
 * `fig11.py`: . Theoretical estimation of axial current at threshold compared to simulations\
+
 Neuron model: `shared/models/model_spike_initiation.py`\
 Run the model: `model_SI_protocol_VC_dichotomy.py` and `model_SI_protocol_VC_test_pulse.py`\
 Results stored in: `simulations data/fig11/`\
