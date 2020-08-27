@@ -6,7 +6,7 @@ In addition to standard scientific packages (scipy, matplotlib), this code requi
 * Seaborn
 * [Brian 2](http://briansimulator.org)
 
-Electrophysiological data from recorded in retina ganglion cells
+Electrophysiological data recorded in retina ganglion cells and confocal images
 (DOI: ) must be
 [downloaded]() into the folder
 `shared/data/`.
