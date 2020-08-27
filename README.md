@@ -13,7 +13,7 @@ Electrophysiological data from recorded in retina ganglion cells
 
 ### Measure of AIS geometry
 
-To measure the AIS start and end position, we first trace the axon with [Vaa3D] (https://alleninstitute.org/what-we-do/brain-science/research/products-tools/vaa3d/) and save its coordinate in a SWC file. The AIS start position and length are measured from the traced axon and the confocal images og ankyrin G labellings with the script: `axon_tracing_analysis.py`. The measures are stored in `RGC_electrical_properties.xlsx`.
+To measure the AIS start and end position, we first trace the axon with Vaa3D and save its coordinate in a SWC file. The AIS start position and length are measured from the traced axon and the confocal images og ankyrin G labellings with the script: `axon_tracing_analysis.py`. The measures are stored in `RGC_electrical_properties.xlsx`.
 
 ## The axial current at spike initiation
 
