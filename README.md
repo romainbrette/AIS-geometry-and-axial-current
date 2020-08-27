@@ -26,13 +26,13 @@ Results of the analysis used to plot the figure: `RGC_action_potential.xlsx`\
 * `fig2.py`: recording the axial current.\
 We illustrate how we measure the axial currents, how we correct the peak axial current for the effect of the series resistance and how the peak axial current and the voltage threshold depend on the series resistance (in a model and in RGC).\
 
-Model (panel E and F): \
+Panel E and F: model \
 Neuron model (with series resistance): `shared/models/model_Na_Kv1_with_Rs.py`\
 Voltage clamp protocol to record axial currents for different series resistance: `model_AP_protocol_VC_dichotomy_with_series_resistance.py`\
 Voltage clamp protocol to record a test pulse: `model_AP_protocol_VC_test_pulse_with_series_resistance.py`\
 Simulation results are stored in `simulations data/fig2/`\
 
-RGC data (panels G and H):\
+Panels G and H: RGC data\
 Measure of the peak axonal current and voltage threshold from axial current recordings: `axonal_current_analysis.py`\
 Results of the analysis used to plot panels G and H: `RGC_electrical_properties.xlsx`\
 
