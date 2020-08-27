@@ -11,6 +11,10 @@ Electrophysiological data from recorded in retina ganglion cells
 [downloaded]() into the folder
 `shared/data/`.
 
+### Measure of AIS geometry
+
+...
+
 ## The axial current at spike initiation
 
 In this part we show ...
@@ -24,6 +28,7 @@ Results of the analysis used to plot the figure: `RGC_action_potential.xlsx`\
 * `fig2.py`: recording the axial current.\
 We illustrate how we measure the axial currents, how we correct the peak axial current for the effect of the series resistance and how the peak axial current and the voltage threshold depend on the series resistance (in a model and in RGC).\
 Model (panel E and F): \
+Neuron model (with series resistance): `shared/models/model_Na_Kv1_with_Rs.py`\
 voltage clamp protocol to record axial currents for different series resistance: `model_AP_protocol_VC_dichotomy_with_series_resistance.py`\
 voltage clamp protocol to record a test pulse: `model_AP_protocol_VC_test_pulse_with_series_resistance.py`\
 simulation results are stored in `simulations data/fig2/`\
@@ -62,11 +67,29 @@ Results of the analysis used to plot the panel: `RGC_electrical_properties.xlsx`
 
 ## The threshold axial current
 
-In this part, we show ...
+In this part, we examinate the sodium current at threshold and how it depends on the AIS geometry.
 
-* `fig6.py`:
+* `fig6.py`: axial current near threshold.\
+We show how the axial current at threshold is measured and that the Na current just below threshold increases very steeply with voltage. We compare the RGC data with the IV curve below threshold in the biophysical model.\
+Panel C-E-F: RGC data.\
+Measure of the IV curve below threshold: `axonal_current_near_threshold_analysis.py`\
+IV curves stored in: `RGC_IV_curves_below_threshold.npz`\
+Panel B-D: model.\
+Neuron model: `shared/models/model_Na_Kv1.py`\
+Run the model: `model_SI_protocol_VC_dichotomy.py` and `model_SI_protocol_VC_test_pulse.py`\
+Results stored in: `simulations data/fig6/`\
 
-* `fig7.py`:
+* `fig7.py`: threshold vs AIS geometry.\
+We examinate the dependance of the voltage threshold and the axial current near threshold on the AIS geometry in RGC, and compare with the theoretical prediction and simulations in a biophysicla model.\
+Panel A-B-C: voltage threshold\
+Measure of the voltage threshold: `axonal_current_analysis.py`\
+Results of the analysis used to plot the panel: `RGC_electrical_properties.xlsx`
+Panel D-E:
+Measure of the axial current near threshold: `axonal_current_near_threshold_analysis.py`\
+Results of the analysis used to plot the panel: `RGC_electrical_properties.xlsx`\
+Neuron model: `shared/models/model_Na_Kv1.py`\
+Run the model: `model_SI_protocol_VC_dichotomy.py` and `model_SI_protocol_VC_test_pulse.py`\
+Results stored in: `simulations data/fig7/`\
 
 ## Adaptation of the axial current
 
