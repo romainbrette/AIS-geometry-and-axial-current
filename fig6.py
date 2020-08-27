@@ -27,7 +27,7 @@ rcParams['axes.spines.top'] = False
 params = params_model_description
 
 ### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
 df_pass = pd.read_excel(path_files + 'RGC_passive_properties.xlsx')
 
@@ -126,9 +126,14 @@ ax1.plot(linspace(t_cut[0]/ms, t_cut[idx_it]/ms, 10), i_thres[idx_it]*ones(10), 
 ax1.set_yticks(ticks = [0, i_thres[idx_it], -0.1])
 ax1.set_yticklabels(['0', '$I_t$', '-0.1']) 
 ax1.set_xlim(0, 10)
-ax1.set_xlabel('t (ms)')
+ax1.set_ylim(-0.15, 0.1)
+# ax1.set_xlabel('t (ms)')
 ax1.set_ylabel('I (nA)')
-ax1.legend(loc='lower right', bbox_to_anchor=(1.05,-0.075), frameon=False)
+ax1.legend(loc='lower right', bbox_to_anchor=(1.05,-0.075), frameon=False, fontsize=8)
+ax1.set_xticks([])
+sns.despine(bottom=True, ax=ax1)
+ax1.plot(linspace(1, 2, 10), -0.147*ones(10), 'k-', linewidth=2)
+ax1.text(0.8, -0.17, '1 ms', color='k', fontsize=8)
 ax1.annotate("A", xy=(0,1.1), xycoords="axes fraction",
                     xytext=(5,-5), textcoords="offset points",
                     ha="left", va="top",
@@ -137,7 +142,7 @@ ax1.annotate("A", xy=(0,1.1), xycoords="axes fraction",
 ### Panel C - E - F: example of IV curves below threshold in RGC
 
 # Laoding IV curves data for all cells
-data = load('RGC_IV_curves_below_threshold_all_1606.npz', allow_pickle=True)
+data = load('RGC_IV_curves_below_threshold.npz', allow_pickle=True)
 dates = data['arr_0']
 retinas = data['arr_1']
 cells = data['arr_2']
@@ -370,7 +375,7 @@ ra = (4*params.Ri/(pi*params.axon_diam**2)) # axial resistance per unit length
 Ras =  ra * start # axial resistance between soma and AIS start
 
 ### Load and plot data from simulations
-path_to_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/simulations data/fig6/'
+path_to_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/simulations data/fig6/'
 dir_name = path_to_data + 'VC dicho APmodel ext AIS x%0.1f L%i' %(start/um, length/um)
 
 Ie = loadtxt(dir_name +'/Steps/I.txt')
@@ -485,7 +490,8 @@ show()
 print ('N cells with It measurement:', len(slope_final))
 
 ### Saving the figure
-save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+# save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 # fig.savefig(save_path + "fig6.pdf", bbox_inches='tight')
 
 

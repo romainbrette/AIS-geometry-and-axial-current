@@ -26,7 +26,7 @@ rcParams['axes.spines.top'] = False
 params = params_model_description
 
 ### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
 
 dates = array(df_cells['Date'])[:-3]

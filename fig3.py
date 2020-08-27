@@ -23,7 +23,7 @@ ax3 = fig.add_subplot(223)
 ax4 = fig.add_subplot(224)
 
 ### Laoding the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
 
 dates = array(df_cells['Date'])[:-3]
@@ -32,7 +32,7 @@ cells = array(df_cells['Cell'])[:-3]
 ages = array(df_cells['Age'])[:-3]
 
 axonal_currents_corr = array(df_cells['Peak axonal current corrected'])[:-3]
-capacitance_cc = array(df_cells['Cm CC 1ms'])[:-3]
+capacitance_cc = array(df_cells['Cm CC'])[:-3]
 dvdt_peak1 = array(df_cells['dvdt peak1'])[:-3]
 
 charge = array(df_cells['Charge1 10'])[:-3]
@@ -147,7 +147,7 @@ ax4.annotate("D", xy=(0,1.1), xycoords="axes fraction",
 tight_layout()
 
 ### Saving the figure
-save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 # fig.savefig("/Users/sarah/Dropbox/Spike initiation/Thesis/images/fig3.pdf", bbox_inches='tight')
 
 

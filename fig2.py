@@ -21,7 +21,7 @@ from vc_test_pulse_analysis import *
 import params_model_description
 
 ### Path to files
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 
 ### Figure
 
@@ -90,9 +90,13 @@ ax7.text(0.4, (min(I_corr_pass[17])-500)*1e-3,'%i'%(Vc_peaks[17] -70),  fontsize
 ax7.plot(t_cut/ms, I_corr_pass[-1] *1e-3, 'k', alpha=0.2) #color= colors[-1]) 
 ax7.text(0.3, (min(I_corr_pass[-1])-500)*1e-3,'%i'%(Vc_peaks[-1] -70),  fontsize=8)
 ax7.set_ylabel('I (nA)')
-ax7.set_xlabel('t (ms)')
+# ax7.set_xlabel('t (ms)')
 ax7.set_xlim(0,3)
 ax7.set_ylim(-20, 1)
+ax7.set_xticks([])
+sns.despine(bottom=True, ax=ax7)
+ax7.plot(linspace(2, 2.5, 10), -19.5*ones(10), 'k-', linewidth=2)
+ax7.text(1.98, -21.5, '0.5 ms', color='k', fontsize=8)
 ax7.annotate("A", xy=(0,1.1), xycoords="axes fraction",
                     xytext=(5,-5), textcoords="offset points",
                     ha="left", va="top",
@@ -219,9 +223,13 @@ for date, retina, cell, age, na_rec, tp_corr, rs_res, vh in zip(dates, retinas, 
              color='crimson', label='exponential fit') #' fit: $\tau$ = %0.02f ms' %Taum)
     ax1.set_xlim(0, 2)
     ax1.set_ylim(-1.5,0.3)
-    ax1.set_xlabel('t (ms)')
+    # ax1.set_xlabel('t (ms)')
     ax1.set_ylabel('I (nA)')
-    ax1.legend(frameon=False, fontsize=8)
+    ax1.legend(frameon=False, loc='center right', fontsize=8)
+    ax1.set_xticks([])
+    sns.despine(bottom=True, ax=ax1)
+    ax1.plot(linspace(1.5,2,10), -1.48*ones(10), 'k-', linewidth=2)
+    ax1.text(1.58, -1.65, '0.5 ms', color='k', fontsize=8)
     ax1.annotate("C", xy=(0,1.1), xycoords="axes fraction",
                     xytext=(5,-5), textcoords="offset points",
                     ha="left", va="top",
@@ -283,10 +291,14 @@ for date, retina, cell, age, na_rec, tp_corr, rs_res, vh in zip(dates, retinas, 
     ax2.plot(t_data[:-1]/ms, i_data[:-1], 'k-', label='raw')
     ax2.plot(t_data[:-1]/ms, I_corr[:-1], 'crimson', label='corrected')
     ax2.set_ylabel('I (nA)')
-    ax2.set_xlabel('t (ms)')
+    # ax2.set_xlabel('t (ms)')
     ax2.set_ylim(-10,2)
     ax2.set_xlim(0., 2.)
     ax2.legend(loc='lower left', fontsize=8, frameon=False)
+    ax2.set_xticks([])
+    sns.despine(bottom=True, ax=ax2)
+    ax2.plot(linspace(1.5,2,10), -9.87*ones(10), 'k-', linewidth=2)
+    ax2.text(1.58, -11., '0.5 ms', color='k', fontsize=8)
     ax2.annotate("D", xy=(0,1.1), xycoords="axes fraction",
                     xytext=(5,-5), textcoords="offset points",
                     ha="left", va="top",
@@ -312,7 +324,7 @@ print('Axial resistance mid:', Ra_mid/Mohm)
 series_resistances = array([0,1,2,3,4,5])
 
 ### Path to the simulations data
-path_to_data = "/users/sarah/Documents/Models simulations/series resistance/"
+path_to_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/simulations data/fig2/'
 
 thresholds_command = zeros(len(series_resistances))
 thresholds_true = zeros(len(series_resistances))
@@ -512,10 +524,6 @@ ax4.annotate("F", xy=(0,1.1), xycoords="axes fraction",
 
 ### Panel G and H: threshold and peak axonal current vs series reistance in RGC
 
-
-# # Load the axonal currents
-# df_cells = pd.read_excel(path_files + 'RGC_electrical_properties_noP8.xlsx')
-
 ### Results from axonal currents analyses in all cells
 dates = array(df_cells['Date'])[:-3]
 retinas = array(df_cells['Retina'])[:-3]
@@ -583,10 +591,12 @@ print ('Linregress Rs-Ip:', 'r=', r_l, 'p=', p_l)
 print ('Pearson Rs-Vt:', stats.pearsonr(series_resistance_residual[idx_discard], voltage_thresholds_true[idx_discard]))
 print ('Pearson Rs-Ip:', stats.pearsonr(series_resistance_residual,axonal_currents))
 
-
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 
-# fig1.savefig(save_path + "fig_Axial_currents_measurements_BIS.pdf", bbox_inches='tight')
+
+# save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
+
+fig1.savefig(save_path + "fig2.pdf", bbox_inches='tight')
 
 
 
