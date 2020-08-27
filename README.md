@@ -61,7 +61,7 @@ Run the model: `model_SI_protocol_VC_dichotomy.py` and `model_SI_protocol_VC_tes
 Simulations results analyzed in: `model_SI_peak_current_vs_delta.py`
 Results stored in: `model_SI_peak_current_ext_AIS_g5000.npz`
 
-Panel D: peak axonal current vs AIS start position in RGC compared to the theoretical prediction
+Panel D: peak axonal current vs AIS start position in RGC compared to the theoretical prediction\
 Measure of the peak axonal current: `axonal_current_analysis.py`\
 Results of the analysis used to plot the panel: `RGC_electrical_properties.xlsx`
 
@@ -86,7 +86,7 @@ Panel A-B-C: voltage threshold\
 Measure of the voltage threshold: `axonal_current_analysis.py`\
 Results of the analysis used to plot the panel: `RGC_electrical_properties.xlsx`
 
-Panel D-E:
+Panel D-E:\
 Measure of the axial current near threshold: `axonal_current_near_threshold_analysis.py`\
 Results of the analysis used to plot the panel: `RGC_electrical_properties.xlsx`\
 Neuron model: `shared/models/model_Na_Kv1.py`\
