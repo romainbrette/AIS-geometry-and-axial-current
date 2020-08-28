@@ -347,7 +347,10 @@ print ('Linrergess x-It data', 'r=', r_ix, 'p=', p_ix)
 print ('Pearson x-It data:', stats.pearsonr(ais_mid_it_plot,-threshold_currents_it_plot))
 
 ### Saving the figure
-save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+
+save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
+# fig.savefig(save_path + "fig7.pdf", bbox_inches='tight')
+
 # fig.savefig(save_path + "fig7.pdf", bbox_inches='tight')
 
 

@@ -169,7 +169,10 @@ ax4.annotate("D", xy=(-0.1,1.2), xycoords="axes fraction",
 tight_layout()
 
 ### Saving the figure
-save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+
+save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
+# fig.savefig(save_path + "fig5.pdf", bbox_inches='tight')
+
 # fig.savefig(save_path + "fig_Peak_axonal_current_theory.pdf", bbox_inches='tight')
 
 

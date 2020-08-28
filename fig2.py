@@ -42,7 +42,8 @@ retina = 'B'
 cell = 2
 
 ### Loading the data
-path_to_cell = glob2.glob('data/RGC data/' + str(int(date)) + '*' + '/retina '+ str(retina) +'/cell ' + str(int(cell)))[0]
+# path_to_cell = glob2.glob('data/RGC data/' + str(int(date)) + '*' + '/retina '+ str(retina) +'/cell ' + str(int(cell)))[0]
+path_to_cell = glob2.glob('/Users/sarah/Documents/Data/Martijn Sierksma/' + str(int(date)) + '*' + '/retina '+ str(retina) +'/cell ' + str(int(cell)))[0]
 abf = pyabf.ABF(path_to_cell + '/VC threshold adaptation/2019_11_15_0054.abf')
 fs = abf.dataRate  * Hz # sampling rate
 dt = 1./fs

@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 """
 A script to measure AIS geometry from 3D axon tracing.
 """
 
-import sys  
+from brian2 import *
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.image as mpimg
@@ -12,16 +11,16 @@ from skimage import io
 from mpl_toolkits.mplot3d import axes3d
 from scipy import interpolate
 import pandas as pd
-from brian2 import *
+
 
 ### Path to files 
-path='/users/sarah/Documents/Data/Martijn Sierksma/images/traced axons/' 
+path= 'data/RGC data/images/traced axons/' 
 
 ### Loading cell
 day = 20200228
 retina = 'A'
 cell = 1
-images_carac = pd.read_excel('/users/sarah/Documents/Data/Martijn Sierksma/images/RGC_image_caracteristics.xlsx', dtype='object')
+images_carac = pd.read_excel('RGC_image_caracteristics.xlsx', dtype='object')
 line = images_carac.loc[(images_carac.Day == day)& (images_carac.Retina == retina ) & (images_carac.Cell == cell )]
 file_name = np.array(line['File name'])[0]
 print (file_name)
@@ -145,7 +144,7 @@ else:
     
 
 ### Load full 3D stack (indices: z,y,x)
-ankG = io.imread('/users/sarah/Documents/Data/Martijn Sierksma/images/%s/Retina %s/cell %s/%s%s%sankG.tif' %(str(file_name), retina, cell, str(day), retina, cell))
+ankG = io.imread('data/RGC data//images/%s/Retina %s/cell %s/%s%s%sankG.tif' %(str(file_name), retina, cell, str(day), retina, cell))
 
 ### Stack caracteristics 
 tot_size = np.array(line['Image size (um)'])[0] # image size in um

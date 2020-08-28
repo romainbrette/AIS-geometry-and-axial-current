@@ -18,6 +18,7 @@ from scipy import linalg
 import seaborn as sns
 from matplotlib import gridspec
 from trace_analysis import *
+from scipy.interpolate import CubicSpline
 
 rcParams['axes.spines.right'] = False
 rcParams['axes.spines.top'] = False
@@ -442,9 +443,39 @@ for i in range(min_peak-16):
                 spike_onset = v[idx_spike_onset[0]]
     # v_onsets.append(spike_onset)
     
+    cs = CubicSpline(v[idx_spike_onset[0]:idx_peak], dv[idx_spike_onset[0]:idx_peak])
+    v_new = arange(v[idx_spike_onset[0]], v[idx_peak], 0.1)
+    dv_new = cs(v_new)
+    # ax8.plot(v_new, dv_new, 'r--')
+    
+    v = v_new
+    dv = dv_new
+    ddv = (dv[1:] - dv[:-1])/(dt/ms)
+    
+    if i > 10:
+    
+        # smoothing
+        #smoothing
+        n = len(v)
+        i_slide = np.zeros(n)
+        d = 60 # half-window, i.e. number of pixels on each side
+    
+        for j in range(n):
+            if j < d: # start of the axon, not full window
+                i_slide[j] = np.mean(dv[0:j+d])
+            elif j > n-d: # end of the axon, not full window
+                i_slide[j] = np.mean(dv[j-d:n])
+            else: 
+                i_slide[j] = np.mean(dv[j-d:j+d])
+                
+        # ax8.plot(v, i_slide, 'g--')
+        
+        dv = i_slide
+        ddv = (dv[1:] - dv[:-1])/(dt/ms)
+    
     # somatic regeneration
     
-    idx_ax_onset = idx_spike_onset[0] - 1 # because the function shifts by +1
+    idx_ax_onset = 0 #idx_spike_onset[0] - 1 # because the function shifts by +1
             
     # global max of dvdt after spike onset
     dvdt_max = argmax(dv[idx_ax_onset:]) + idx_ax_onset
@@ -540,7 +571,7 @@ print ('Charge attenuation:', nanmean(charge_attenuation), '+-', nanstd(charge_a
 
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 
-# fig.savefig(save_path + "fig_Current_attenuation_CCcont.pdf", bbox_inches='tight')
+fig.savefig(save_path + "fig10.pdf", bbox_inches='tight')
 
 # fig.savefig("/Users/sarah/Dropbox/Spike initiation/Thesis/images/fig_rgc_Compensation.pdf", bbox_inches='tight')
 

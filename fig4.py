@@ -39,7 +39,9 @@ ais_starts = ais_starts[~isnan(ais_lengths)]
 ais_lengths = ais_lengths[~isnan(ais_lengths)]
 
 ### Load the images of an example cell
-path_images = 'data/RGC data/images/fig4/' 
+# path_images = 'data/RGC data/images/fig4/' 
+path_images = '/Users/sarah/Documents/data/Martijn Sierksma/images/20191114 P10/Retina C/cell 1/' 
+
 
 ### Statistics
 print ('Mean Delta:', mean(ais_starts), '+-', std(ais_starts))
@@ -108,7 +110,9 @@ ax5.annotate("B", xy=(0,1.1), xycoords="axes fraction",
 tight_layout()
 
 ### Saving the figure
-save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
+# fig.savefig(save_path + "fig4.pdf", bbox_inches='tight')
+
 # fig.savefig(save_path + "fig4.pdf", dpi=150)
         
 

@@ -1,5 +1,3 @@
-
-
 """
 
 Figure 1: Spontaneous APs of retinal ganglion cells.
@@ -40,8 +38,9 @@ ax7 = fig.add_subplot(gs[2, 2:4])
 
 ##### PANEL A-D: example of a spontaneous AP of a RGC
 
-### Load the list of cells used for the analysis
-df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
+### Path to datafiles: load the list of cells used for the analysis
+path_to_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
+df_cells = pd.read_excel(path_to_files + 'RGC_electrical_properties.xlsx')
 idx_cell = -4 # the cell shown in exmaple in the figure
 
 date = array(df_cells['Date'])[idx_cell]
@@ -49,7 +48,7 @@ retina = array(df_cells['Retina'])[idx_cell]
 cell = array(df_cells['Cell'])[idx_cell]
 
 ### Path to the data
-path_to_data = 'data/RGC data/'
+path_to_data = '/Users/sarah/Documents/Data/Martijn Sierksma/'
 path_to_cell = path_to_data + str(int(date)) + "*" + '/retina '+ str(retina) +'/cell ' + str(int(cell))
 path_to_cc_cont = glob2.glob(path_to_cell + '/CC cont/' + '*' + ".abf")
 print (path_to_cc_cont)
@@ -125,13 +124,8 @@ ax1.plot(t_dvdt_max2 - t_ax_onset, v_dvdt_max2, 'o',  c=cols[6], label='second m
 ax1.plot(t_som_onset - t_ax_onset, v_som_onset, 'o',  c=cols[14], label='som. regeneration', markerfacecolor='none')
 ax1.legend(frameon=False, fontsize=6)
 ax1.set_xlim(-0.5, 1.5)
-ax1.set_ylim(-60, 35)
 ax1.set_ylabel('$V$ (mV)')
-# ax1.set_xlabel('$t$ (ms)')
-ax1.set_xticks([])
-sns.despine(bottom=True, ax=ax1)
-ax1.plot(linspace(-0.25,.25,10), -59.*ones(10), 'k-', linewidth=2)
-ax1.text(-0.15, -67,'0.5 ms', color='k', fontsize=8)
+ax1.set_xlabel('$t$ (ms)')
 ax1.annotate("A", xy=(0,1.1), xycoords="axes fraction",
                 xytext=(5,-5), textcoords="offset points",
                 ha="left", va="top",
@@ -144,13 +138,8 @@ ax2.plot(t_dvdt_max2- t_ax_onset, dv_dvdt_max2, 'o', c=cols[6], markerfacecolor=
 ax2.plot(t_dvdt_max1- t_ax_onset, dv_dvdt_max1, 'o', c=cols[10], markerfacecolor='none')
 ax2.plot(t_som_onset- t_ax_onset, dvdt_som_onset, 'o', c=cols[14], markerfacecolor='none')
 ax2.set_ylabel('$dV/dt$ (mV/ms)')
-# ax2.set_xlabel('$t$ (ms)')
+ax2.set_xlabel('$t$ (ms)')
 ax2.set_xlim(-0.5, 1.5)
-ax2.set_ylim(-100, 350)
-ax2.set_xticks([])
-sns.despine(bottom=True, ax=ax2)
-ax2.plot(linspace(-0.25,.25,10), -95.*ones(10), 'k-', linewidth=2)
-ax2.text(-0.15, -135,'0.5 ms', color='k', fontsize=8)
 ax2.annotate("B", xy=(0,1.1), xycoords="axes fraction",
                 xytext=(5,-5), textcoords="offset points",
                 ha="left", va="top",
@@ -182,13 +171,8 @@ ax4.plot(t_dvdt_max2- t_ax_onset, ddv[idx_dvdt_max2]/(mV/ms**2), 'o', c=cols[6],
 ax4.plot(t_dvdt_max1- t_ax_onset, ddv[idx_dvdt_max1]/(mV/ms**2), 'o', c=cols[10], markerfacecolor='none')
 ax4.plot(t_som_onset- t_ax_onset, ddv[idx_som_onset]/(mV/ms**2), 'o', c=cols[14], markerfacecolor='none')
 ax4.set_ylabel('$d^2V/dt^2$ (mV/ms$^2$)')
-# ax4.set_xlabel('$t$ (ms)')
+ax4.set_xlabel('$t$ (ms)')
 ax4.set_xlim(-0.5, 1.5)
-ax4.set_ylim(-2700, 2100)
-ax4.set_xticks([])
-sns.despine(bottom=True, ax=ax4)
-ax4.plot(linspace(-0.25,.25,10), -2600.*ones(10), 'k-', linewidth=2)
-ax4.text(-0.15, -3000, '0.5 ms', color='k', fontsize=8)
 ax4.annotate("D", xy=(0,1.1), xycoords="axes fraction",
                 xytext=(5,-5), textcoords="offset points",
                 ha="left", va="top",
@@ -197,7 +181,7 @@ ax4.annotate("D", xy=(0,1.1), xycoords="axes fraction",
 ##### Panel E-F: statistics over the neuron population
 
 ### Load the results of the AP shape analysis 
-df_cells = pd.read_excel('RGC_action_potential.xlsx')
+df_cells = pd.read_excel(path_to_files + 'RGC_action_potential.xlsx')
 
 ljp = -11. # liquid junction potential
 
@@ -260,11 +244,8 @@ print ('N cells with constraint on Vend:', len(ap_onsets[idx]))
 
 
 ### Saving the figure
-# save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
+save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
 # fig.savefig(save_path + "fig1.pdf", bbox_inches='tight')
-
-# fig.savefig("fig1.pdf", bbox_inches='tight')
-
 
 
 

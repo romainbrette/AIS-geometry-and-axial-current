@@ -146,9 +146,11 @@ ax4.annotate("D", xy=(0,1.1), xycoords="axes fraction",
 tight_layout()
 
 ### Saving the figure
-save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
+# save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 # fig.savefig("/Users/sarah/Dropbox/Spike initiation/Thesis/images/fig3.pdf", bbox_inches='tight')
 
+# save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
+# fig.savefig(save_path + "fig3.pdf", bbox_inches='tight')
 
 
 
