@@ -3,6 +3,8 @@
 
 Measurement of the transferred charge from the axonal currents. (RGC_transferred_charge)
 
+OK
+
 """
 import glob2
 import pandas as pd
@@ -13,11 +15,8 @@ from vc_test_pulse_analysis import *
 from na_currents_analysis import *
 from scipy import interpolate
 
-path_files = '/Users/sarahgoethals/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Data patch/RGC/'
-
-### Path to datafiles: load the list of cells used for the analysis
-path_to_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
-df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
+### Load the list of cells used for the analysis
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
 
 first_cell = 6
 last_cell = 7 #len(df_cells['Date'])
@@ -35,7 +34,7 @@ n_sweeps = array(df_cells['Sweep number'])[first_cell:last_cell]
 tp_corrs = array(df_cells['TP num correction'])[first_cell:last_cell]
 
 ### Path to the data
-path_to_data = '/Users/sarah//Documents/Data/Martijn Sierksma/'
+path_to_data = 'data/RGC data/'
 
 current_integrals = []
 current_integrals_10 = []
@@ -227,7 +226,7 @@ for date, retina, cell, age, na_rec, n_sweep, tp_corr in zip(dates, retinas, cel
 #                   'Duration2 50': [current_durations_50[i][1] for i in range(len(dates))],
 #                   })
 
-# df_select_cells.to_excel(path_files + "RGC_charge_at_SI_1906.xlsx", \
+# df_select_cells.to_excel("RGC_charge_test.xlsx", \
 #                           columns=['Date','Retina','Cell','Age',\
 #                                     'Charge1', 'Charge2',
 #                                     'Charge1 10', 'Charge2 10',

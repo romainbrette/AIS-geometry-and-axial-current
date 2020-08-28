@@ -14,7 +14,8 @@ from model_Na_Kv1 import *
 from model_Na_Kv1_with_Rs import *
 from model_spike_initiation import model_spike_initiation, model_spike_initiation_with_Rs
 
-'/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/simulations_data/fig6/'
+path_save_data = 'simulations data/fig6/'
+# path_save_data = 'simulations data/fig7/'
 
 params = params_model_description
 

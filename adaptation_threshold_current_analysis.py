@@ -2,7 +2,9 @@
 
 """
 
-Threshold current adaptation
+Threshold current adaptation.
+
+OK
 
 
 """
@@ -18,16 +20,14 @@ from scipy.optimize import curve_fit
 from vc_test_pulse_analysis import *
 from na_currents_analysis import *
 
-### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 
 # Load the list of the cells that will be used for analysis
-cells_pp = pd.read_excel(path_files + 'recordings_for_threshold_current_adaptation.xlsx') # cells already sorted for Rs etc
+cells_pp = pd.read_excel('recordings_for_threshold_current_adaptation.xlsx') # cells already sorted for Rs etc
 
-# # Load the recordings that will be used for the analysis
-# df_adapt = pd.read_excel(path_to_files + 'good_recordings_adaptation_all_v2.xlsx')
+# Load the recordings that will be used for the analysis
+df_adapt = pd.read_excel('recordings_for_adaptation.xlsx')
 
-first_cell = 8
+first_cell = 9
 last_cell = 10 #len(cells_pp['Date'])
 
 dates = array(cells_pp['Date'])[first_cell:last_cell]
@@ -37,7 +37,7 @@ ages = array(cells_pp['Age'])[first_cell:last_cell]
 v_holding = array(cells_pp['V holding (mV)'])[first_cell:last_cell]
 
 #11 Path to the data
-path_to_data = '/Users/sarah/Documents/Data/Martijn Sierksma/'
+path_to_data = 'data/RGC data/'
 
 selected_dates = []
 selected_retinas = []
@@ -270,11 +270,11 @@ for date, retina, cell, age, vh in zip(dates, retinas, cells, ages, v_holding):
         else:
             print('No adaptation protocol')
 
-# savez('RGC_IV_curves_below_threshold_adaptation_0107_3', \
+# savez('RGC_IV_curves_below_threshold_adaptation_test', \
 #       dates_iv, retinas_iv, cells_iv, \
 #       IV_curves_below_I_all, IV_curves_below_V_all, v_prepulse_iv_all)
 
-# #Write in excel file
+# ### Write in excel file
 
 # df_select_cells = pd.DataFrame({'Date': selected_dates,
 #                   'Retina': selected_retinas,
@@ -287,7 +287,6 @@ for date, retina, cell, age, vh in zip(dates, retinas, cells, ages, v_holding):
 #                   'Vth': threshold_potentials,
 #                   })
 
-# save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Data patch/RGC/'
-# df_select_cells.to_excel(save_path + "RGC_threshold_current_adaptation_0107_3.xlsx", 
+# df_select_cells.to_excel( "RGC_threshold_current_adaptation_test.xlsx", 
 #                 columns=['Date','Retina','Cell','Age','Sweep',\
 #                           'V0','Peak current', 'Threshold current', 'Vth'])

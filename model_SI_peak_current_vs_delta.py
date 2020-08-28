@@ -30,7 +30,7 @@ gna_tot = gna_density * length * params.axon_diam * pi # total Na conductance
 ra = (4*params.Ri/(pi*params.axon_diam**2)) # axial resistance per unit length
 
 ### Load data from simulations
-path_to_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/simulations data/fig5/'
+path_to_data = 'simulations data/fig5/'
 
 ### Measure peak currents
 peak_currents = zeros( len(starts))
@@ -111,8 +111,7 @@ for i in range(len(starts)):
 show()
 
 ### Save the measured peak currents in an npz file
-save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/simulations data/fig5/'
-# savez(save_path + 'SI_model_peak_current_ext_AIS_g5000.npz', starts/um, length/um, gna_tot, peak_currents)
+# savez('model_SI_peak_current_ext_AIS_g5000_test.npz', starts/um, length/um, gna_tot, peak_currents)
 
 ### Plotting results
 f3 = figure('It pred', figsize=(5,4))

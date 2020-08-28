@@ -4,6 +4,8 @@
 
 Peak axonal current analysis. (RGS_Na_current_correction_C_CC)
 
+OK
+
 """
 # import os
 import glob2
@@ -15,12 +17,11 @@ from vc_test_pulse_analysis import *
 from na_currents_analysis import *
 
 ### Path to datafiles: load the list of cells used for the analysis
-path_to_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
-df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
-df_pass = pd.read_excel(path_files + 'RGC_passive_properties.xlsx')
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
+df_pass = pd.read_excel('RGC_passive_properties.xlsx')
 
-first_cell = 20
-last_cell = 21 #len(df_cells['Date'])
+first_cell = 5
+last_cell = 6 #len(df_cells['Date'])
 
 # Cells identity and age
 dates = array(df_cells['Date'])[first_cell:last_cell]
@@ -39,7 +40,7 @@ resting_mp = array(df_cells['V holding (mV)'])[first_cell:last_cell]
 tp_nums = array(df_cells['TP num passive props'])[first_cell:last_cell]
     
 ### Path to the data
-path_to_data = '/Users/sarah//Documents/Data/Martijn Sierksma/'
+path_to_data = 'data/RGC data/'
 
 selected_dates = []
 selected_retinas = []
@@ -66,7 +67,7 @@ for date, retina, cell, age, na_rec, tp_corr, rs_res, vh in zip(dates, retinas, 
     print (date, retina, cell)
     
     ### Load Na current recording
-    path_to_cell = path_to_data + str(int(date)) + "*/" + '/retina '+ str(retina) +'/cell ' + str(int(cell))
+    path_to_cell = path_to_data + str(int(date)) + '/retina '+ str(retina) +'/cell ' + str(int(cell))
     
     if (date, retina, cell) == (20191115, 'B', 2): # for that cell, a recording of the adaptation protocol is used
         print('adaptation protocol')
@@ -284,15 +285,15 @@ for date, retina, cell, age, na_rec, tp_corr, rs_res, vh in zip(dates, retinas, 
     filterfactor = 1
      
     # peak of the axonal current
-    idx_peak = argmin(I_corr_pass[idx_peak_ax_current][int(t_start*ms/dt):int(9.*ms/dt)]) + int(t_start*ms/dt)
+    idx_peak = argmin(I_corr_pass[idx_peak_ax_current][:int(9.*ms/dt)]) 
     i_data = I_corr_pass[idx_peak_ax_current][idx_peak-50: idx_peak+20] * 1e-3 #nA 
     
-    figure('Rs correction %i,  %s, %i, %0.2f' %(date, retina, cell, Taum), figsize=(12,6))
+    figure('Rs correction %i,  %s, %i, %0.2f' %(date, retina, cell, Tau), figsize=(12,6))
     
     f_rs = 1 
     f_c = 1
     
-    cm = Taum/rs_res # nF
+    cm = Tau/rs_res # nF
     print ('Cm:', cm)
     
     capacitance_from_tau.append(cm*1e3) #pF
@@ -348,49 +349,43 @@ for date, retina, cell, age, na_rec, tp_corr, rs_res, vh in zip(dates, retinas, 
     axonal_currents.append(I_peaks[idx_peak_ax_current])
     voltage_threshold.append(Vc_peaks[idx_peak_ax_current-1]/mV + vh)
     
-    # # Raw current at threshold (highest non spiking situation)
-    # #smoothing
-    # n = len(t_cut/ms)
-    # i_slide = np.zeros(n)
-    # d = 30 # half-window, i.e. number of pixels on each side
+    # Raw current at threshold (highest non spiking situation)
+    #smoothing
+    n = len(t_cut/ms)
+    i_slide = np.zeros(n)
+    d = 30 # half-window, i.e. number of pixels on each side
 
-    # for j in range(n):
-    #     if j < d: # start of the axon, not full window
-    #         i_slide[j] = np.mean(I_corr_pass[idx_peak_ax_current-1][0:j+d])
-    #     elif j > n-d: # end of the axon, not full window
-    #         i_slide[j] = np.mean(I_corr_pass[idx_peak_ax_current-1][j-d:n])
-    #     else: 
-    #         i_slide[j] = np.mean(I_corr_pass[idx_peak_ax_current-1][j-d:j+d])
+    for j in range(n):
+        if j < d: # start of the axon, not full window
+            i_slide[j] = np.mean(I_corr_pass[idx_peak_ax_current-1][0:j+d])
+        elif j > n-d: # end of the axon, not full window
+            i_slide[j] = np.mean(I_corr_pass[idx_peak_ax_current-1][j-d:n])
+        else: 
+            i_slide[j] = np.mean(I_corr_pass[idx_peak_ax_current-1][j-d:j+d])
         
-    # figure('Thres curr %i,  %s, %i' %(date, retina, cell))
-    # plot(I_corr_pass[idx_peak_ax_current-1])
-    # plot(I_cut[idx_peak_ax_current-1])
-    # plot(i_slide, 'k')
+    figure('Thres curr %i,  %s, %i' %(date, retina, cell))
+    plot(I_corr_pass[idx_peak_ax_current-1])
+    plot(I_cut[idx_peak_ax_current-1])
+    plot(i_slide, 'k')
     
-    # idx_th = argmin(i_slide[50:400]) + 50 #argmin(I_corr_pass[idx_peak_ax_current-1][50:400]) + 50
-    # Ie_thres = I_cut[idx_peak_ax_current-1][idx_th]
+    idx_th = argmin(i_slide[50:400]) + 50 #argmin(I_corr_pass[idx_peak_ax_current-1][50:400]) + 50
+    Ie_thres = I_cut[idx_peak_ax_current-1][idx_th]
     
-    # plot(idx_th, Ie_thres, 'ko')
+    plot(idx_th, Ie_thres, 'ko')
     
-    # threshold_currents_raw.append(Ie_thres * 1e-3)
+    threshold_currents_raw.append(Ie_thres * 1e-3)
     
     # Corrected voltage trace
     idx_step = where(V[-1] == max(V[-1]))[0][0] - 1
     l = len(I_cut[0])
     Vc_th_true = V[idx_peak_ax_current-1][idx_step: idx_step + l]/mV + vh - rs_res * I_cut[idx_peak_ax_current-1] * 1e-3
     idx_vth_max = argmax(Vc_th_true[50:]) + 50
-
-    figure('Corr voltage %i,  %s, %i' %(date, retina, cell))
-    plot(V[idx_peak_ax_current-1][idx_step: idx_step + l]/mV + vh)
-    plot(Vc_th_true)
-    plot(idx_vth_max, Vc_th_true[idx_vth_max], 'ko')
-    plot(idx_th,  Vc_th_true[idx_th], 'ro')
     
     voltage_threshold_true.append(Vc_th_true[idx_vth_max])
     
 
 
-### Write in excel file
+# ## Write in excel file
 
 
 # df_select_cells = pd.DataFrame({'Date': selected_dates,
@@ -403,9 +398,9 @@ for date, retina, cell, age, na_rec, tp_corr, rs_res, vh in zip(dates, retinas, 
 #                   'Vth': voltage_threshold,
 #                   'Vth true': voltage_threshold_true,
 #                   'Cm VC residual': capacitance_from_tau, 
-#                   'Tau RC': membrane_time_cst_short})
+#                   'Tau RC': time_cst_short})
 
-# df_select_cells.to_excel(path_files + "RGC_peak_axonal_current_corrected.xlsx", \
+# df_select_cells.to_excel("RGC_peak_axonal_current_test.xlsx", \
 #                           columns=['Date','Retina','Cell','Age','Recording',\
 #                                   'Peak axonal current', 'Peak axonal current corr', \
 #                                   'Vth','Vth true','Cm VC residual',\

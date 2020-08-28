@@ -5,6 +5,8 @@
 
 Analysis of voltage threshold and peak axonal current covariation.
 
+OK
+
 """
 
 from brian2 import *
@@ -19,13 +21,10 @@ from matplotlib import gridspec
 ljp = -11.
 
 ### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
-
-# Load the axonal currents
-df_cells = pd.read_excel(path_files + 'RGC_adaptation.xlsx')
+df_cells = pd.read_excel('RGC_adaptation.xlsx')
 
 # Loading the recording database 
-df_rec_database = pd.read_excel(path_files + 'RGC_recording_database.xlsx')
+df_rec_database = pd.read_excel('RGC_recording_database.xlsx')
 
 dates = array(df_cells['Date'])
 retinas = array(df_cells['Retina'])
@@ -120,7 +119,6 @@ prepulse_pot_all = []
 
 for i in range(N):
     # Removing the recordings with same v0
-    #print (ia_per_cell[i])
     if v0_per_cell[i][0] == -60. and v0_per_cell[i][-1] == -60.:
         v0_per_cell[i] = delete(v0_per_cell[i], -1)
         ia_per_cell[i] = delete(ia_per_cell[i], -1)
@@ -140,6 +138,14 @@ for i in range(N):
 slope_per_cell = []
 intercept_per_cell = []
 r_per_cell = []
+
+name1 = "tab20b"
+name2 = "tab20c"
+name3 = "tab20"
+cmap1 = get_cmap(name1)  
+cmap2 = get_cmap(name2)  
+cmap3 = get_cmap(name3) 
+cols = cmap1.colors + cmap2.colors + cmap3.colors
 
 fig_vth_ia = figure('Threshold and peak current', figsize=(10,4))
 gs = gridspec.GridSpec(1, 3, width_ratios=[2, 2, 1]) 
@@ -161,7 +167,6 @@ for i in range(N):
 ax1.set_ylabel('$V_t$ (mV)')
 ax1.set_xlabel('$-I_p$ (nA)')
 ax1.xaxis.set_major_formatter(FormatStrFormatter('%.0f'))
-#ax1.xaxis.set_minor_formatter(FormatStrFormatter('%.1f'))
 ax1.set_ylim(-65,-25)
 ax1.set_xlim(0,12)
 ax1.legend(frameon=False, fontsize=6)
@@ -172,29 +177,20 @@ ax2.semilogx(iii, intercept_per_cell[m] - 2*slope_per_cell[m]*log(iii), '-', col
              alpha=0.5, label='$k_a$= %0.02f mV, r= %0.02f' %(slope_per_cell[m], r_per_cell[m]))
 ax2.semilogx(-array(ia_per_cell[m]), vth_per_cell[m], 'o', color=cols[m])
 ax2.xaxis.set_major_formatter(FormatStrFormatter('%.0f'))
-# ax2.xaxis.set_minor_formatter(FormatStrFormatter('%.0f'))
 ax2.set_ylim(-65, -25)
-#ax2.set_title('Fit to individual cells data: example')
 ax2.set_xlabel('$-I_p$ (nA)')
 ax2.legend(frameon=False)
 
 ax3 = fig_vth_ia.add_subplot(gs[2])
 sns.boxplot(y=slope_per_cell, color='gray')
 sns.swarmplot(y=slope_per_cell,  color='0.2')
-#ax3.plot(1, 5, 'o', color='gray', label='theory')
 ax3.set_ylabel('$k_a$ (mV)')
 ax3.set_xticks([])
 ax3.set_ylim(0, 6)
-#ax3.legend(frameon=False)
 
 tight_layout() 
 
-# savez('fig_adaptation_covariation', ia_per_cell, vth_per_cell, v0_per_cell)
-
-
-
-
-# fig_vth_ia.savefig(save_path + "Adaptation_threshold_peak_current_covariation.pdf", bbox_inches='tight')
+# savez('RGC_adaptation_covariation', ia_per_cell, vth_per_cell, v0_per_cell)
 
 
 

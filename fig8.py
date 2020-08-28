@@ -24,13 +24,12 @@ rcParams['axes.spines.top'] = False
 params = params_model_description
 
 ### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 
 # Load the axonal currents
-df_cells = pd.read_excel(path_files + 'RGC_adaptation.xlsx')
+df_cells = pd.read_excel('RGC_adaptation.xlsx')
 
 # Load the Vi from fitting threshold adaptation
-df_fit = pd.read_excel(path_files + 'RGC_Vi_from_adaptation.xlsx')
+df_fit = pd.read_excel('RGC_Vi_from_adaptation.xlsx')
 
 dates = array(df_cells['Date'])
 retinas = array(df_cells['Retina'])

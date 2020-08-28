@@ -31,7 +31,7 @@ Ras =  ra * starts
 print('Axial resistance:', Ras/Mohm)
 
 ### Path to simulation results
-path_to_data = "/users/sarah/Documents/Models simulations/current at threshold/"
+path_to_data = "simulations data/fig11/"
 
 threshold_currents = zeros((len(lengths), len(starts)))
 peak_currents_latency = zeros((len(lengths), len(starts)))

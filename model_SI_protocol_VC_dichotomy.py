@@ -13,7 +13,8 @@ from model_Na_Kv1 import *
 from model_Na_Kv1_with_Rs import *
 from model_spike_initiation import model_spike_initiation, model_spike_initiation_with_Rs
 
-path_save_data = "/users/sarahgoethals/Documents/Thesis/Models simulations/peak axonal current/"
+path_save_data = "simulations data/fig5/"
+# path_save_data = "simulations data/fig11/"
 
 params = params_model_description
 

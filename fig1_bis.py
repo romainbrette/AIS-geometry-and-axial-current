@@ -40,9 +40,8 @@ ax7 = fig.add_subplot(gs[2, 2:4])
 
 ##### PANEL A-D: example of a spontaneous AP of a RGC
 
-### Path to datafiles: load the list of cells used for the analysis
-path_to_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
-df_cells = pd.read_excel(path_to_files + 'RGC_electrical_properties.xlsx')
+### Load the list of cells used for the analysis
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
 idx_cell = -4 # the cell shown in exmaple in the figure
 
 date = array(df_cells['Date'])[idx_cell]
@@ -50,7 +49,7 @@ retina = array(df_cells['Retina'])[idx_cell]
 cell = array(df_cells['Cell'])[idx_cell]
 
 ### Path to the data
-path_to_data = '/Users/sarah/Documents/Data/Martijn Sierksma/'
+path_to_data = 'data/RGC data/'
 path_to_cell = path_to_data + str(int(date)) + "*" + '/retina '+ str(retina) +'/cell ' + str(int(cell))
 path_to_cc_cont = glob2.glob(path_to_cell + '/CC cont/' + '*' + ".abf")
 print (path_to_cc_cont)
@@ -198,7 +197,7 @@ ax4.annotate("D", xy=(0,1.1), xycoords="axes fraction",
 ##### Panel E-F: statistics over the neuron population
 
 ### Load the results of the AP shape analysis 
-df_cells = pd.read_excel(path_to_files + 'RGC_action_potential.xlsx')
+df_cells = pd.read_excel('RGC_action_potential.xlsx')
 
 ljp = -11. # liquid junction potential
 
@@ -261,8 +260,11 @@ print ('N cells with constraint on Vend:', len(ap_onsets[idx]))
 
 
 ### Saving the figure
-save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
+# save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 # fig.savefig(save_path + "fig1.pdf", bbox_inches='tight')
+
+# fig.savefig("fig1.pdf", bbox_inches='tight')
+
 
 
 

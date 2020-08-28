@@ -13,7 +13,7 @@ import params_model_description, params_simple_model
 from model_Na_Kv1 import *
 from model_Na_Kv1_with_Rs import *
 
-path_save_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/simulations data/fig2/'
+path_save_data = 'simulations data/fig2/'
 
 params = params_model_description
 
@@ -111,7 +111,6 @@ for rs in series_resistance:
             
             # Measuring the peak axonal current
             i_max = mean(M.I_VC[0][int(30. * ms / dt):int(39 * ms / dt)]) - min(M.I_VC[0][int(20.25 * ms / dt):int(39 * ms / dt)])
-            # i_max = abs(min(M.I_VC[0][int(20.25 * ms / dt):int(39 * ms / dt)]))
 
             print ('i=', i_max/nA)
             i_threshold = .5*nA

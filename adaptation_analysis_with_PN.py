@@ -6,6 +6,8 @@
 
 Analysis of adaptation data in cells with P/5 protocol.
 
+OK
+
 
 """
 from brian2 import *
@@ -20,20 +22,17 @@ from scipy.optimize import curve_fit
 from vc_test_pulse_analysis import *
 from na_currents_analysis import *
 
-### Loading the cells passive properties and the list of the recording that will be analyzed
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
-
 # Load cells passive properties
-cells_pp = pd.read_excel(path_to_files + 'RGC_passive_properties.xlsx')
+cells_pp = pd.read_excel('RGC_passive_properties.xlsx')
 
 # Load the recordings that will be used for the analysis
-df_adapt = pd.read_excel(path_to_files + 'recordings_for_adaptation.xlsx')
+df_adapt = pd.read_excel('recordings_for_adaptation.xlsx')
 
 # Loading the recording database to have the Rs compensation corresponding to the test pulses that are analysed
-df_rec_database = pd.read_excel(path_to_data + 'RGC_recording_database.xlsx')
+df_rec_database = pd.read_excel('RGC_recording_database.xlsx')
 
-first_cell = -37
-last_cell = -32 #len(cells_pp['Date'])
+first_cell = -2
+last_cell = -1 #len(cells_pp['Date'])
 
 dates = array(cells_pp['Date'])[first_cell:last_cell]
 retinas = array(cells_pp['Retina'])[first_cell:last_cell]
@@ -41,7 +40,7 @@ cells = array(cells_pp['Cell'])[first_cell:last_cell]
 ages = array(cells_pp['Age'])[first_cell:last_cell]
 
 # Path to the data
-path_to_data = '/Volumes/Lolita/Martijn Sierksma/'
+path_to_data = 'data/RGC data/'
 
 # record measures
 selected_dates = []
@@ -541,7 +540,7 @@ for date, retina, cell, age in zip(dates, retinas, cells, ages):
 #                   'Duration2 50': [current_durations_50[i][1] for i in range(len(selected_dates))],
 #                   })
 
-# df_select_cells.to_excel(path_to_files + "RGC_adaptation_2705_17.xlsx", \
+# df_select_cells.to_excel(path_to_files + "RGC_adaptation_PN_test.xlsx", \
 #                 columns=['Date','Retina','Cell','Age','Recording', 'Sweep',\
 #                   'Vh',
 #                   'V prepulse',

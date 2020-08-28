@@ -4,6 +4,7 @@
 
 Automated measure of Na currents below threshold.
 
+ok
 
 """
 from brian2 import *
@@ -19,8 +20,7 @@ from vc_test_pulse_analysis import *
 from na_currents_analysis import *
 
 ### Loading the list of cells used in the analysis
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
-df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
 
 first_cell = -2
 last_cell = len(df_cells['Date'])
@@ -31,11 +31,11 @@ cells = array(df_cells['Cell'])[:-3][first_cell:last_cell]
 ages = array(df_cells['Age'])[:-3][first_cell:last_cell]
 v_holding = array(df_cells['V holding (mV)'])[:-3][first_cell:last_cell]
 
-# # Load the number of the good quality recordings
-# df_gc = pd.read_excel(path_to_files + 'good_recordings.xlsx')
+# Load the number of the good quality recordings
+df_gc = pd.read_excel('axial_current_recordings.xlsx') # a file that contains the number of the axial current recordings (VS steps protocol)
 
 ### Path to the data
-path_to_data = '/Users/sarah/Documents/Data/Martijn Sierksma/'
+path_to_data = 'data/RGC data/'
 
 ### Keeping track of analyzed cells
 selected_dates = []
@@ -183,7 +183,7 @@ for date, retina, cell, age, vh in zip(dates, retinas, cells, ages, v_holding):
             v_command_all.append(array(v_command))
             threshold_current_smoothed.append(min(thres_curr_smoothed))
                     
-# savez('RGC_IV_curves_below_threshold', selected_dates, selected_retinas, selected_cells, \
+# savez('RGC_IV_curves_below_threshold_test', selected_dates, selected_retinas, selected_cells, \
 #       IV_curves_below_I_all, IV_curves_below_V_all, v_command_all)
 
 
@@ -193,7 +193,7 @@ for date, retina, cell, age, vh in zip(dates, retinas, cells, ages, v_holding):
 #                   'Cell': selected_cells,
 #                   'Threshold current (nA)': threshold_current_smoothed})
 
-# df_select_cells.to_excel(path_to_files + "RGC_threshold_current_noP8_1606.xlsx", \
+# df_select_cells.to_excel( "RGC_threshold_current_test.xlsx", \
 #                           columns=['Date','Retina','Cell','Threshold current (nA)'])
         
         

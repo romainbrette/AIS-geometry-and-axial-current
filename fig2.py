@@ -20,9 +20,6 @@ from na_currents_analysis import *
 from vc_test_pulse_analysis import *
 import params_model_description
 
-### Path to files
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
-
 ### Figure
 
 rcParams['axes.spines.right'] = False
@@ -45,7 +42,7 @@ retina = 'B'
 cell = 2
 
 ### Loading the data
-path_to_cell = glob2.glob('/Users/sarah/Documents/Data/Martijn Sierksma/' + str(int(date)) + '*' + '/retina '+ str(retina) +'/cell ' + str(int(cell)))[0]
+path_to_cell = glob2.glob('data/RGC data/' + str(int(date)) + '*' + '/retina '+ str(retina) +'/cell ' + str(int(cell)))[0]
 abf = pyabf.ABF(path_to_cell + '/VC threshold adaptation/2019_11_15_0054.abf')
 fs = abf.dataRate  * Hz # sampling rate
 dt = 1./fs
@@ -123,8 +120,7 @@ ax8.annotate("B", xy=(0,1.1), xycoords="axes fraction",
 ### Panel C and D: currents correction in an example cell
 
 #### Load the list of the cells and the results from the currents analyses that will be used for panels E and F too
-df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
-# df_pass = pd.read_excel(path_files + 'RGC_passive_properties.xlsx')
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
 
 # the example cell
 first_cell = -9
@@ -324,7 +320,7 @@ print('Axial resistance mid:', Ra_mid/Mohm)
 series_resistances = array([0,1,2,3,4,5])
 
 ### Path to the simulations data
-path_to_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/simulations data/fig2/'
+path_to_data = 'simulations data/fig2/'
 
 thresholds_command = zeros(len(series_resistances))
 thresholds_true = zeros(len(series_resistances))
@@ -596,7 +592,7 @@ save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current a
 
 # save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 
-fig1.savefig(save_path + "fig2.pdf", bbox_inches='tight')
+# fig1.savefig(save_path + "fig2.pdf", bbox_inches='tight')
 
 
 

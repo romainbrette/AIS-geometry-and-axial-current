@@ -23,8 +23,7 @@ rcParams['axes.spines.right'] = False
 rcParams['axes.spines.top'] = False
 
 ### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
-df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
 
 dates = array(df_cells['Date'])[:-3]
 retinas = array(df_cells['Retina'])[:-3]
@@ -211,7 +210,7 @@ starts = linspace(0, 20, 5)*um
 lengths = [30]*um 
 
 ### Loading data from simulations
-path_to_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/simulations data/fig7/'
+path_to_data = 'simulations data/fig7/'
 
 peak_currents = zeros((len(lengths), len(starts)))
 threshold_currents_sim = zeros((len(lengths), len(starts)))

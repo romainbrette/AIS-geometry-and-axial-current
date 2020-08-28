@@ -11,7 +11,8 @@ from brian2 import *
 import params_model_description, params_simple_model
 from model_spike_initiation import model_spike_initiation
 
-path_save_data = "/users/sarahgoethals/Documents/Thesis/Models simulations/peak axonal current/"
+path_save_data = "simulations data/fig5/"
+# path_save_data = "simulations data/fig11/"
 
 params = params_model_description
 

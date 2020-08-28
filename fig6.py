@@ -27,9 +27,8 @@ rcParams['axes.spines.top'] = False
 params = params_model_description
 
 ### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
-df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
-df_pass = pd.read_excel(path_files + 'RGC_passive_properties.xlsx')
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
+df_pass = pd.read_excel('RGC_passive_properties.xlsx')
 
 # we select one cell as an exmaple for panel A
 first_cell = -5
@@ -53,7 +52,7 @@ resting_mp = array(df_cells['V holding (mV)'])[first_cell:last_cell]
 tp_nums = array(df_cells['TP num passive props'])[first_cell:last_cell]
 
 ### Path to the data
-path_to_data = '/Users/sarah/Documents/Data/Martijn Sierksma/'
+path_to_data = 'data/RGC data/'
 
 ### Figure
 fig = figure('Threshold and current threshold', figsize=(6,7))
@@ -375,7 +374,7 @@ ra = (4*params.Ri/(pi*params.axon_diam**2)) # axial resistance per unit length
 Ras =  ra * start # axial resistance between soma and AIS start
 
 ### Load and plot data from simulations
-path_to_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/simulations data/fig6/'
+path_to_data = 'simulations data/fig6/'
 dir_name = path_to_data + 'VC dicho APmodel ext AIS x%0.1f L%i' %(start/um, length/um)
 
 Ie = loadtxt(dir_name +'/Steps/I.txt')

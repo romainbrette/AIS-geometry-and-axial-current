@@ -5,6 +5,8 @@
 
 Analysis of threshold adaptation in RGC.
 
+OK
+
 
 """
 
@@ -19,17 +21,11 @@ from matplotlib import gridspec
 
 ljp = -11.
 
-### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/'
-
-# # Load cells'passive properties
-# cells_pp = pd.read_excel(path_to_files + 'RGC_passive_properties_sorted.xlsx')
-
 # Load the axonal currents
-df_cells = pd.read_excel(path_files + 'RGC_adaptation.xlsx')
+df_cells = pd.read_excel('RGC_adaptation.xlsx')
 
 # Loading the recording database 
-df_rec_database = pd.read_excel(path_files+'RGC_recording_database.xlsx')
+df_rec_database = pd.read_excel('RGC_recording_database.xlsx')
 
 dates = array(df_cells['Date'])
 retinas = array(df_cells['Retina'])
@@ -161,7 +157,7 @@ for i in range(len(dates_per_cell)):
         vh_cells[i] =nan
             
 
-# savez('RGC_threshold_adaptation', v0_per_cell[m], vth_per_cell[m], vh_cells, cst_cells, \
+# savez('RGC_threshold_adaptation_test', v0_per_cell[m], vth_per_cell[m], vh_cells, cst_cells, \
 #                           ka_cells, ki_cells, outliers, dates_per_cell, retina_per_cell, cell_per_cell)
 
 
@@ -175,7 +171,7 @@ for i in range(len(dates_per_cell)):
 #                   })
 
 # save_path = '/Users/sarahgoethals/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Data patch/RGC/'
-# df_select_cells.to_excel(save_path + "RGC_Vi_from_adaptation.xlsx", \
+# df_select_cells.to_excel(save_path + "RGC_Vi_from_adaptation_test.xlsx", \
 #         columns=['Date','Retina','Cell','k','Vi'])
 
 

@@ -19,10 +19,8 @@ rcParams['axes.spines.right'] = False
 rcParams['axes.spines.top'] = False
 
 ### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
-
 ### Threshold current at different V0 (from RGC_adaptation_threshold_current.py)
-df_cells = pd.read_excel(path_files + 'RGC_threshold_current_adaptation.xlsx')
+df_cells = pd.read_excel('RGC_threshold_current_adaptation.xlsx')
 
 dates = array(df_cells['Date'])
 retinas = array(df_cells['Retina'])
@@ -34,7 +32,7 @@ axonal_currents = array(df_cells['Threshold current'])
 threshold_potentials = array(df_cells['Vth']) 
 
 #### Load Rs during adaptation protocol
-df_rs = pd.read_excel(path_files + 'RGC_adaptation.xlsx')
+df_rs = pd.read_excel('RGC_adaptation.xlsx')
 
 #### Counting cells and sorting measures per cell
 N = 0

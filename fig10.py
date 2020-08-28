@@ -23,13 +23,11 @@ rcParams['axes.spines.right'] = False
 rcParams['axes.spines.top'] = False
 
 ### Loading the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
-
 # Loading the recording database 
-df_rec_database = pd.read_excel(path_files+'RGC_recording_database.xlsx')
+df_rec_database = pd.read_excel('RGC_recording_database.xlsx')
 
 # Load the adaptation data
-df_cells = pd.read_excel(path_files + 'RGC_adaptation.xlsx')
+df_cells = pd.read_excel('RGC_adaptation.xlsx')
 
 dates = array(df_cells['Date'])
 retinas = array(df_cells['Retina'])

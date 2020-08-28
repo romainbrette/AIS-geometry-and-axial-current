@@ -11,15 +11,13 @@ import params_model_description, params_simple_model
 from model_Na_Kv1 import *
 from model_Na_Kv1_with_Rs import *
 
-path_save_data = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/simulations data/fig2/'
+path_save_data = 'simulations data/fig2/'
 
 params = params_model_description
 
 defaultclock.dt = 0.01*ms
 dt = defaultclock.dt
 
-#series_resistance = False
-#rs = 1.*Mohm
 V0 = params.EL
 
 start = 5.*um

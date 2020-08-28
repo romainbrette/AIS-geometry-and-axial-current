@@ -4,6 +4,8 @@
 
 Exponential fit to voltage decay measured in current-clamp to estimate the membrane time constant tau_m.
 
+OK
+
 """
 from brian2 import *
 import os
@@ -20,8 +22,7 @@ rcParams['axes.spines.right'] = False
 rcParams['axes.spines.top'] = False
 
 ### Laod list of cells used for the analysis
-path_to_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
-df_cells = pd.read_excel(path_to_files + 'RGC_electrical_properties.xlsx')
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
 
 first_cell = 0
 last_cell = 2 #    len(df_cells['Date'])
@@ -31,7 +32,7 @@ cells = array(df_cells['Cell'])[first_cell:last_cell]
 ages = array(df_cells['Age'])[first_cell:last_cell]
           
 # Path to the data
-path_to_data = '/Volumes/Lolita/Martijn Sierksma/'
+path_to_data = 'data/RGC data/'
 
 N = 0
 
@@ -144,17 +145,16 @@ for date, retina, cell, age in zip(dates, retinas, cells, ages):
 
 show()
 
-###Write in excel file
+# ### Write in excel file
 
-df_select_cells = pd.DataFrame({'Date': selected_dates,
-                  'Retina': selected_retinas,
-                  'Cell': selected_cells,
-                  'Tau m': membrane_time_cst,
-                  'Cm': capacitances
-                  })
+# df_select_cells = pd.DataFrame({'Date': selected_dates,
+#                   'Retina': selected_retinas,
+#                   'Cell': selected_cells,
+#                   'Tau m': membrane_time_cst,
+#                   'Cm': capacitances
+#                   })
 
-# save_path = '/Users/sarahgoethals/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Data patch/RGC/'
-# df_select_cells.to_excel(save_path + "RGC_membrane_time_constant_and_capacitance_1805_6.xlsx", columns=['Date','Retina','Cell','Tau m', 'Cm'])
+# df_select_cells.to_excel("RGC_capacitance_test.xlsx", columns=['Date','Retina','Cell','Tau m', 'Cm'])
 
 
 

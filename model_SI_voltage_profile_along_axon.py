@@ -75,7 +75,7 @@ tight_layout()
 show()
 
 ### Saving data
-# savez('/Users/sarah/Documents/repositories/AIS-geometry-and-axonal-current/Na currents in RGC/codes submission/data/SI_model_voltage_profile',\
+# savez('model_SI_voltage_profile',\
 #       v_profile_at_max, x)
 
        

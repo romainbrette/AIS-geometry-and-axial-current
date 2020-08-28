@@ -23,8 +23,7 @@ rcParams['axes.spines.right'] = False
 rcParams['axes.spines.top'] = False
 
 ### Laoding the results of analyses
-path_files = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
-df_cells = pd.read_excel(path_files + 'RGC_electrical_properties.xlsx')
+df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
 
 dates = array(df_cells['Date'])[:-3]
 retinas = array(df_cells['Retina'])[:-3]
@@ -40,7 +39,7 @@ ais_starts = ais_starts[~isnan(ais_lengths)]
 ais_lengths = ais_lengths[~isnan(ais_lengths)]
 
 ### Load the images of an example cell
-path_images = '/Users/sarah/Documents/data/Martijn Sierksma/images/20191114 P10/Retina C/cell 1/' 
+path_images = 'data/RGC data/images/fig4/' 
 
 ### Statistics
 print ('Mean Delta:', mean(ais_starts), '+-', std(ais_starts))
