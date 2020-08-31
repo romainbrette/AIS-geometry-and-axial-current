@@ -62,6 +62,7 @@ selected_dur50 = []
 
 ljp = -11. 
 
+### Removing bad quality recordings
 for date, retina, cell, age, v0, vh, rs_before, rs_after, rs_rec, ia, vth, charge, dur10, dur50 in \
                             zip(dates, retinas, cells, ages, \
                                 prepulse_potentials, holding_potentials, Rs_before, Rs_after, Rs_rec,\
@@ -97,7 +98,6 @@ dates_per_cell = [selected_dates[0]]
 retina_per_cell = [selected_retinas[0]]
 cell_per_cell = [selected_cells[0]]
 
-capa_per_cell = []
 v0_per_cell = []
 vth_per_cell = []
 ia_per_cell = []
@@ -105,7 +105,6 @@ charge_per_cell = []
 dur10_per_cell = []
 dur50_per_cell = []
 
-# cm_cell = []
 v0_cell = []
 vth_cell = []
 ia_cell = []
@@ -119,7 +118,6 @@ for date, retina, cell, age, v0, ia, vth, charge, dur10, dur50 in zip(selected_d
                                                 selected_charge, selected_dur10, selected_dur50): 
 
     if date_prev == date and retina_prev == retina and cell_prev == cell:
-        # cm_cell.append(cm)
         v0_cell.append(v0)
         vth_cell.append(vth)
         ia_cell.append(ia)
@@ -131,7 +129,6 @@ for date, retina, cell, age, v0, ia, vth, charge, dur10, dur50 in zip(selected_d
         dates_per_cell.append(date)
         retina_per_cell.append(retina)
         cell_per_cell.append(cell)
-        # capa_per_cell.append(cm_cell)
         v0_per_cell.append(v0_cell)
         vth_per_cell.append(vth_cell)
         ia_per_cell.append(ia_cell)
@@ -139,7 +136,6 @@ for date, retina, cell, age, v0, ia, vth, charge, dur10, dur50 in zip(selected_d
         dur10_per_cell.append(dur10_cell)
         dur50_per_cell.append(dur50_cell)
         
-        # cm_cell = [cm]
         v0_cell = [v0]
         vth_cell = [vth]
         ia_cell = [ia]
@@ -153,7 +149,6 @@ for date, retina, cell, age, v0, ia, vth, charge, dur10, dur50 in zip(selected_d
 
 ### Adding the last cell
 N += 1
-# capa_per_cell.append(cm_cell)
 v0_per_cell.append(v0_cell)
 vth_per_cell.append(vth_cell)
 ia_per_cell.append(ia_cell)
@@ -176,7 +171,6 @@ for i in range(N):
             charge_per_cell[i] = delete(charge_per_cell[i], idx_v0_delete)
             dur50_per_cell[i] = delete(dur50_per_cell[i], idx_v0_delete)
             dur10_per_cell[i] = delete(dur10_per_cell[i], idx_v0_delete)
-            # capa_per_cell[i] = delete(capa_per_cell[i], idx_v0_delete)
         else:
             v0_per_cell[i] = array(v0_per_cell[i])
             ia_per_cell[i] = array(ia_per_cell[i])
@@ -184,7 +178,6 @@ for i in range(N):
             charge_per_cell[i] = array(charge_per_cell[i])
             dur50_per_cell[i] = array(dur50_per_cell[i])
             dur10_per_cell[i] = array(dur10_per_cell[i])
-            # capa_per_cell[i] = array(capa_per_cell[i])
         
 ### Current and charge attenuation
 current_attenuation = []
@@ -351,7 +344,6 @@ ax6.plot(t/second, abf.sweepY, color='k', linewidth=0.5)
 ax6.set_xlim(110.1, 112.4)
 ax6.set_ylim(-80, 40)
 ax6.set_ylabel('V (mV)')
-# ax6.set_xlabel('t (s)')
 ax6.plot(linspace(112,112.1,10), -75.*ones(10), 'k-', linewidth=2)
 ax6.text(111.85, -85.,'100 ms',color='k', fontsize=8)
 ax6.set_xticks([])
@@ -441,12 +433,10 @@ for i in range(min_peak-16):
             if spike_onset > -30:
                 idx_spike_onset = spike_onsets(v*mV, criterion = 0.5*volt/second * dt, v_peak = -30.*mV)
                 spike_onset = v[idx_spike_onset[0]]
-    # v_onsets.append(spike_onset)
     
     cs = CubicSpline(v[idx_spike_onset[0]:idx_peak], dv[idx_spike_onset[0]:idx_peak])
     v_new = arange(v[idx_spike_onset[0]], v[idx_peak], 0.1)
     dv_new = cs(v_new)
-    # ax8.plot(v_new, dv_new, 'r--')
     
     v = v_new
     dv = dv_new
@@ -467,9 +457,7 @@ for i in range(min_peak-16):
                 i_slide[j] = np.mean(dv[j-d:n])
             else: 
                 i_slide[j] = np.mean(dv[j-d:j+d])
-                
-        # ax8.plot(v, i_slide, 'g--')
-        
+                        
         dv = i_slide
         ddv = (dv[1:] - dv[:-1])/(dt/ms)
     
@@ -571,7 +559,7 @@ print ('Charge attenuation:', nanmean(charge_attenuation), '+-', nanstd(charge_a
 
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 
-fig.savefig(save_path + "fig10.pdf", bbox_inches='tight')
+# fig.savefig(save_path + "fig10.pdf", bbox_inches='tight')
 
 # fig.savefig("/Users/sarah/Dropbox/Spike initiation/Thesis/images/fig_rgc_Compensation.pdf", bbox_inches='tight')
 
