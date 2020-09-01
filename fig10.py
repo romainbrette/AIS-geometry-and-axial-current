@@ -19,6 +19,7 @@ import seaborn as sns
 from matplotlib import gridspec
 from trace_analysis import *
 from scipy.interpolate import CubicSpline
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 rcParams['axes.spines.right'] = False
 rcParams['axes.spines.top'] = False
@@ -342,7 +343,7 @@ abf.setSweep(0)
 t = dt*np.arange(len(abf.sweepY))
 ax6.plot(t/second, abf.sweepY, color='k', linewidth=0.5)
 ax6.set_xlim(110.1, 112.4)
-ax6.set_ylim(-80, 40)
+ax6.set_ylim(-80, 50)
 ax6.set_ylabel('V (mV)')
 ax6.plot(linspace(112,112.1,10), -75.*ones(10), 'k-', linewidth=2)
 ax6.text(111.85, -85.,'100 ms',color='k', fontsize=8)
@@ -352,6 +353,26 @@ ax6.annotate("F", xy=(0,1.1), xycoords="axes fraction",
                     xytext=(5,-5), textcoords="offset points",
                     ha="left", va="top",
                     fontsize=12, weight='bold')
+
+# inset: exmaple of APs
+axins = inset_axes(ax6, width=.8, height=0.6, loc=1)
+# first spike
+idx_spike1 = int(spike_times[0]/dt)
+f = data[idx_spike1-70:idx_spike1+50]
+t_spike = t[idx_spike1-70:idx_spike1+50]/ms - t[idx_spike1-70]/ms
+axins.plot(t_spike, f, color=cols[0])
+idx_spike2 = int(spike_times[-1]/dt)
+f = data[idx_spike2-70:idx_spike2+50]
+t_spike = t[idx_spike2-70:idx_spike2+50]/ms - t[idx_spike2-70]/ms
+axins.plot(t_spike, f, color=cols[30])
+sns.despine(bottom=True, left=True, ax=axins)
+axins.set_xticks([])
+axins.set_yticks([])
+axins.plot(linspace(3.5,4.5,10), 30*ones(10), 'k-', linewidth=2)
+axins.plot(4.5*ones(10), linspace(20,30,10), 'k-', linewidth=2)
+axins.text(3, 40,'1 ms',color='k', fontsize=8)
+axins.text(5, 20,'10 mV',color='k', fontsize=8)
+
 
 # Panel G: phase plots
 for i in range(int(min_peak/3)+1):

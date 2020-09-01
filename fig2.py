@@ -102,12 +102,12 @@ ax7.annotate("A", xy=(0,1.1), xycoords="axes fraction",
 
 # IV curve
 ax8.plot(Vc_peaks -70, I_peaks *1e-3, '-', color= 'crimson') #, linewidth=2) 
-ax8.annotate('threshold', xy=(-55.5, -0.25), xytext=(-50, -1), fontsize=8,
-            arrowprops=dict(arrowstyle='->', color='k', ls='-'))
-ax8.annotate('peak axonal current', xy=(-55, -6.5), xytext=(-60, -14), fontsize=8,
-            arrowprops=dict(arrowstyle='->', color='k', ls='-'))
-ax8.annotate('somatic currents', xy=(-44.5, -11), xytext=(-50, -19), fontsize=8,
-            arrowprops=dict(arrowstyle='->', color='k', ls='-'))
+# ax8.annotate('threshold', xy=(-55.5, -0.25), xytext=(-50, -1), fontsize=8,
+#             arrowprops=dict(arrowstyle='->', color='k', ls='-'))
+# ax8.annotate('peak axonal current', xy=(-55, -6.5), xytext=(-60, -14), fontsize=8,
+#             arrowprops=dict(arrowstyle='->', color='k', ls='-'))
+# ax8.annotate('somatic currents', xy=(-44.5, -11), xytext=(-50, -19), fontsize=8,
+#             arrowprops=dict(arrowstyle='->', color='k', ls='-'))
 ax8.set_ylabel('Peak current (nA)')
 ax8.set_xlabel('V (mV)')
 ax8.set_ylim(-20, 1)

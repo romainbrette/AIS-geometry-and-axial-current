@@ -310,7 +310,7 @@ sns.scatterplot(x=ais_mid_it_plot, y=-threshold_currents_it_plot, color='k', lab
 # Regression
 slope_ix, intercept_ix, r_ix, p_ix,_ = stats.linregress(ais_mid_it_plot,-threshold_currents_it_plot)
     
-ax7.set_ylabel('$I_t$ (nA)')
+ax7.set_ylabel('$-I_t$ (nA)')
 ax7.set_xlabel('$x_{1/2}$ ($\mu$m)')
 ax7.yaxis.set_major_formatter(FormatStrFormatter('%.01f'))
 ax7.xaxis.set_major_formatter(FormatStrFormatter('%.0f'))
