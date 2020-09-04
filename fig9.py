@@ -103,9 +103,16 @@ vth_per_cell.append(vth_cell)
 ia_per_cell.append(ia_cell)
 ith_per_cell.append(ith_cell)
     
-### Removing doubles
+### Removing doubles and nans
 v0_range = linspace(-75, -30, 10)
 for i in range(N):
+    # Removing nans in Ith
+    idx_nan = where([ith_per_cell[i][j] != ith_per_cell[i][j] for j in range(len(ith_per_cell[i]))])[0]
+    print (idx_nan)
+    v0_per_cell[i] = delete(v0_per_cell[i], idx_nan)
+    ia_per_cell[i] = delete(ia_per_cell[i], idx_nan)
+    vth_per_cell[i] = delete(vth_per_cell[i], idx_nan)
+    ith_per_cell[i] = delete(ith_per_cell[i], idx_nan)
     # Removing the recordings with same v0
     for v0 in v0_range:
         idx_v0 = where(v0_per_cell[i] == v0)[0]
@@ -194,7 +201,7 @@ ax1.annotate("A", xy=(0,1.1), xycoords="axes fraction",
 
 ### Panel B: It vs V0 in an example cell
 ax2 = fig.add_subplot(gs[1])
-m = -9
+m = 1 #-9
 idx_sort = argsort(v0_per_cell[m])
 for i in range(len(v0_per_cell[m][:-1])): # tor emove the -35 point for which we have no IV curve
     ax2.plot(array(v0_per_cell[m])[idx_sort][i], array(ith_per_cell[m])[idx_sort][i], 'o', color=cols[i+1])
@@ -228,7 +235,7 @@ print ('Stats IT attenuation:', nanmean(threshold_current_attenuation), nanstd(t
 ### Saving the figure
 
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
-# fig.savefig(save_path + "fig9.pdf", bbox_inches='tight')
+fig.savefig(save_path + "fig9.pdf", bbox_inches='tight')
 
 # fig.savefig(save_path + "fig9.pdf", bbox_inches='tight')
 

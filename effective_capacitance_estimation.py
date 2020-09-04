@@ -24,8 +24,8 @@ rcParams['axes.spines.top'] = False
 ### Laod list of cells used for the analysis
 df_cells = pd.read_excel('RGC_electrical_properties.xlsx')
 
-first_cell = 0
-last_cell = 2 #    len(df_cells['Date'])
+first_cell = -5
+last_cell = -3 #    len(df_cells['Date'])
 dates = array(df_cells['Date'])[first_cell:last_cell]
 retinas = array(df_cells['Retina'])[first_cell:last_cell]
 cells = array(df_cells['Cell'])[first_cell:last_cell]
