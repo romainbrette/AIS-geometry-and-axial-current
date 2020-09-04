@@ -235,7 +235,7 @@ print ('Stats IT attenuation:', nanmean(threshold_current_attenuation), nanstd(t
 ### Saving the figure
 
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
-fig.savefig(save_path + "fig9.pdf", bbox_inches='tight')
+# fig.savefig(save_path + "fig9.pdf", bbox_inches='tight')
 
 # fig.savefig(save_path + "fig9.pdf", bbox_inches='tight')
 
