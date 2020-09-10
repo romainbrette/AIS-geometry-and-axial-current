@@ -581,6 +581,7 @@ print ('Charge attenuation:', nanmean(charge_attenuation), '+-', nanstd(charge_a
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 
 # fig.savefig(save_path + "fig10.pdf", bbox_inches='tight')
+# fig.savefig(save_path + "fig10.png", dpi=300)
 
 # fig.savefig("/Users/sarah/Dropbox/Spike initiation/Thesis/images/fig_rgc_Compensation.pdf", bbox_inches='tight')
 

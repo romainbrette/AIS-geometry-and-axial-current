@@ -239,6 +239,8 @@ save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current a
 
 # fig.savefig(save_path + "fig9.pdf", bbox_inches='tight')
 
+# fig.savefig(save_path + "fig9.png", dpi=300)
+
 
 
 

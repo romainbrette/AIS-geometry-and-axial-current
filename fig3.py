@@ -149,8 +149,10 @@ tight_layout()
 # save_path = '/Users/sarah/Documents/repositories/AIS-geometry-and-axial-current/'
 # fig.savefig("/Users/sarah/Dropbox/Spike initiation/Thesis/images/fig3.pdf", bbox_inches='tight')
 
-# save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
+save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 # fig.savefig(save_path + "fig3.pdf", bbox_inches='tight')
+
+# fig.savefig(save_path + "fig3.png", dpi=300)
 
 
 

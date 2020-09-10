@@ -113,8 +113,7 @@ tight_layout()
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 # fig.savefig(save_path + "fig4.pdf", bbox_inches='tight')
 
-# fig.savefig(save_path + "fig4.pdf", dpi=150)
-        
+# fig.savefig(save_path + "fig4.png", dpi=300)
 
 
 

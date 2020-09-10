@@ -52,7 +52,7 @@ resting_mp = array(df_cells['V holding (mV)'])[first_cell:last_cell]
 tp_nums = array(df_cells['TP num passive props'])[first_cell:last_cell]
 
 ### Path to the data
-path_to_data = 'data/RGC data/'
+path_to_data = '/Users/sarah/Documents/Data/Martijn Sierksma/' #'data/RGC data/'
 
 ### Figure
 fig = figure('Threshold and current threshold', figsize=(6,7))
@@ -493,7 +493,7 @@ print ('N cells with It measurement:', len(slope_final))
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 # fig.savefig(save_path + "fig6.pdf", bbox_inches='tight')
 
-
+# fig.savefig(save_path + "fig6.png", dpi=300)
 
 
 

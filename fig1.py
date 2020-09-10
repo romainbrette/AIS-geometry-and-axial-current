@@ -266,51 +266,56 @@ save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current a
 
 # fig.savefig("fig1.pdf", bbox_inches='tight')
 
-
-
-### Figure thesis
-
-fig_bis = figure('AP thesis', (6,2.5))
-
-ax1 = fig_bis.add_subplot(121)
-ax1.plot(t_new/ms - t_ax_onset, v/mV, 'k-')
-ax1.plot(t_ax_onset- t_ax_onset, v_ax_onset, 'o', c=cols[2], label='spike onset', markerfacecolor='none')
-ax1.plot(t_dvdt_max1 - t_ax_onset, v_dvdt_max1, 'o',  c=cols[10], label='first max dV/dt', markerfacecolor='none')
-# ax1.plot(t_dvdt_max2 - t_ax_onset, v_dvdt_max2, 'o',  c=cols[6], label='second max dV/dt', markerfacecolor='none')
-ax1.plot(t_som_onset - t_ax_onset, v_som_onset, 'o',  c=cols[14], label='som. regeneration', markerfacecolor='none')
-ax1.legend(frameon=False, fontsize=6)
-ax1.set_xlim(-0.5, 1.5)
-ax1.set_ylim(-60, 35)
-ax1.set_ylabel('$V$ (mV)')
-# ax1.set_xlabel('$t$ (ms)')
-ax1.set_xticks([])
-sns.despine(bottom=True, ax=ax1)
-ax1.plot(linspace(-0.25,.25,10), -59.*ones(10), 'k-', linewidth=2)
-ax1.text(-0.15, -67,'0.5 ms', color='k', fontsize=8)
+# fig.savefig(save_path + "fig1.png", dpi=300)
 
 
 
-ax3 = fig_bis.add_subplot(122)
-ax3.plot(v/mV, dv, 'k-')
-ax3.plot(v_ax_onset*ones(50), linspace(-100, 320,50), 'k--', alpha=0.3)
-ax3.plot(v_som_onset*ones(50), linspace(-100, 320,50), 'k--', alpha=0.3)
-ax3.annotate('', xy=(v_ax_onset, 250), xytext=(v_som_onset, 250),
-        arrowprops=dict(arrowstyle='<->', color='k', ls='-', alpha=0.3))
-ax3.text((v_ax_onset + v_som_onset)/2 - 5, 275, "$\Delta V$", alpha=0.3)
-ax3.plot(v_ax_onset, dvdt_ax_onset, 'o', c=cols[2], markerfacecolor='none')
-# ax3.plot(v_dvdt_max2, dv_dvdt_max2, 'o', c=cols[6], markerfacecolor='none')
-ax3.plot(v_dvdt_max1, dv_dvdt_max1, 'o', c=cols[10], markerfacecolor='none')
-ax3.plot(v_som_onset, dvdt_som_onset, 'o', c=cols[14], markerfacecolor='none')
-ax3.set_ylabel('$dV/dt$ (mV/ms)')
-ax3.set_xlabel('$V$ (mV)')
-ax3.set_ylim(-100, 350)
+# ### Figure thesis
+
+# fig_bis = figure('AP thesis', (6,2.5))
+
+# ax1 = fig_bis.add_subplot(121)
+# ax1.plot(t_new/ms - t_ax_onset, v/mV, 'k-')
+# ax1.plot(t_ax_onset- t_ax_onset, v_ax_onset, 'o', c=cols[2], label='spike onset', markerfacecolor='none')
+# ax1.plot(t_dvdt_max1 - t_ax_onset, v_dvdt_max1, 'o',  c=cols[10], label='first max dV/dt', markerfacecolor='none')
+# # ax1.plot(t_dvdt_max2 - t_ax_onset, v_dvdt_max2, 'o',  c=cols[6], label='second max dV/dt', markerfacecolor='none')
+# ax1.plot(t_som_onset - t_ax_onset, v_som_onset, 'o',  c=cols[14], label='som. regeneration', markerfacecolor='none')
+# ax1.legend(frameon=False, fontsize=6)
+# ax1.set_xlim(-0.5, 1.5)
+# ax1.set_ylim(-60, 35)
+# ax1.set_ylabel('$V$ (mV)')
+# # ax1.set_xlabel('$t$ (ms)')
+# ax1.set_xticks([])
+# sns.despine(bottom=True, ax=ax1)
+# ax1.plot(linspace(-0.25,.25,10), -59.*ones(10), 'k-', linewidth=2)
+# ax1.text(-0.15, -67,'0.5 ms', color='k', fontsize=8)
 
 
-tight_layout()
+
+# ax3 = fig_bis.add_subplot(122)
+# ax3.plot(v/mV, dv, 'k-')
+# ax3.plot(v_ax_onset*ones(50), linspace(-100, 320,50), 'k--', alpha=0.3)
+# ax3.plot(v_som_onset*ones(50), linspace(-100, 320,50), 'k--', alpha=0.3)
+# ax3.annotate('', xy=(v_ax_onset, 250), xytext=(v_som_onset, 250),
+#         arrowprops=dict(arrowstyle='<->', color='k', ls='-', alpha=0.3))
+# ax3.text((v_ax_onset + v_som_onset)/2 - 5, 275, "$\Delta V$", alpha=0.3)
+# ax3.plot(v_ax_onset, dvdt_ax_onset, 'o', c=cols[2], markerfacecolor='none')
+# # ax3.plot(v_dvdt_max2, dv_dvdt_max2, 'o', c=cols[6], markerfacecolor='none')
+# ax3.plot(v_dvdt_max1, dv_dvdt_max1, 'o', c=cols[10], markerfacecolor='none')
+# ax3.plot(v_som_onset, dvdt_som_onset, 'o', c=cols[14], markerfacecolor='none')
+# ax3.set_ylabel('$dV/dt$ (mV/ms)')
+# ax3.set_xlabel('$V$ (mV)')
+# ax3.set_ylim(-100, 350)
+
+
+# tight_layout()
 
 
 # save_path = '/Users/sarah/Dropbox/Spike initiation/Thesis/images/'
 # fig_bis.savefig(save_path + "ppt_RGC_AP_with_dvmax.pdf", bbox_inches='tight')
+
+
+
 
 
 

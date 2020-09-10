@@ -590,6 +590,8 @@ print ('Pearson Rs-Ip:', stats.pearsonr(series_resistance_residual,axonal_curren
 
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 
+# fig1.savefig(save_path + "fig2.png", dpi=300)
+
 
 # save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 

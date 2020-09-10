@@ -146,6 +146,8 @@ save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current a
 
 # f2.savefig(save_path + "fig11.pdf", bbox_inches='tight')
 
+# f2.savefig(save_path + "fig11.png", dpi=300)
+
 
     
         
