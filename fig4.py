@@ -40,8 +40,8 @@ ais_lengths = ais_lengths[~isnan(ais_lengths)]
 
 ### Load the images of an example cell
 # path_images = 'data/RGC data/images/fig4/' 
-path_images = '/Users/sarah/Documents/data/Martijn Sierksma/images/20191114 P10/Retina C/cell 1/' 
-
+# path_images = '/Users/sarah/Documents/data/Martijn Sierksma/images/20191114 P10/Retina C/cell 1/' 
+path_images = '/Users/sarah/Documents/data/Martijn Sierksma/images/20191114 P10/Retina C/' 
 
 ### Statistics
 print ('Mean Delta:', mean(ais_starts), '+-', std(ais_starts))
@@ -57,7 +57,7 @@ gs1 = gridspec.GridSpecFromSubplotSpec(1, 4, subplot_spec=gs[0], wspace=0)
 
 # biocytin
 ax1 = fig.add_subplot(gs1[0])
-img1 = mpimg.imread(path_images + 'fig_biocytin.jpg')
+img1 = mpimg.imread(path_images + 'fig_biocytin_2.jpg')
 ax1.imshow(img1)
 ax1.axis('off')
 ax1.set_title('biocytin', color='m')
@@ -75,14 +75,14 @@ ax2.set_title('ankyrin G', color='g')
 
 # masked anyrin G
 ax3 = fig.add_subplot(gs1[2], sharey=ax1)
-img3 = mpimg.imread(path_images + 'fig_masked_ankG.jpg')
+img3 = mpimg.imread(path_images + 'fig_masked_ankG_2.jpg')
 ax3.imshow(img3, cmap='gray')
 ax3.axis('off')
 ax3.set_title('ankyrin G', color='g')
 
 # merge
 ax4 = fig.add_subplot(gs1[3], sharey=ax1)
-img4 = mpimg.imread(path_images + 'fig_merge.jpg')
+img4 = mpimg.imread(path_images + 'fig_merge_2.jpg')
 ax4.imshow(img4, cmap='gray')
 ax4.axis('off')
 ax4.set_title('merge')
@@ -113,7 +113,7 @@ tight_layout()
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 # fig.savefig(save_path + "fig4.pdf", bbox_inches='tight')
 
-# fig.savefig(save_path + "fig4.png", dpi=300)
+# fig.savefig(save_path + "fig4_new.png", dpi=300)
 
 
 
