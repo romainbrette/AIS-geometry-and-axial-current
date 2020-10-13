@@ -101,7 +101,7 @@ ax7.annotate("A", xy=(0,1.1), xycoords="axes fraction",
                     fontsize=12, weight='bold')
 
 # IV curve
-ax8.plot(Vc_peaks -70, I_peaks *1e-3, '-', color= 'crimson') #, linewidth=2) 
+ax8.plot(Vc_peaks -70, I_peaks *1e-3, '-', color= 'k') #, linewidth=2) 
 # ax8.annotate('threshold', xy=(-55.5, -0.25), xytext=(-50, -1), fontsize=8,
 #             arrowprops=dict(arrowstyle='->', color='k', ls='-'))
 # ax8.annotate('peak axonal current', xy=(-55, -6.5), xytext=(-60, -14), fontsize=8,
@@ -143,6 +143,8 @@ rs_residuals = array(df_cells['Residual Rs'])[first_cell:last_cell]
 resting_mp = array(df_cells['V holding (mV)'])[first_cell:last_cell]
 # TP w/o compensation used to measure Cm and Rs
 tp_nums = array(df_cells['TP num passive props'])[first_cell:last_cell]
+
+print (dates, retinas, cells)
     
 ### Path to the data
 path_to_data = '/Users/sarah/Documents/Data/Martijn Sierksma/'
@@ -591,9 +593,6 @@ print ('Pearson Rs-Ip:', stats.pearsonr(series_resistance_residual,axonal_curren
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 
 # fig1.savefig(save_path + "fig2.png", dpi=300)
-
-
-# save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 
 # fig1.savefig(save_path + "fig2.pdf", bbox_inches='tight')
 

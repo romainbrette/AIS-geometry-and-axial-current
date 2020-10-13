@@ -245,7 +245,7 @@ sns.boxplot(y=v_regeneration[idx] - ap_onsets[idx], color='gray', width=0.3, ax=
 sns.swarmplot(y=v_regeneration[idx] - ap_onsets[idx],  color='0.2', ax=ax7)
 sns.despine(bottom=True, ax=ax7)
 ax7.set_ylabel('$\Delta V$ (mV)')
-ax7.set_ylim(20, 40)
+ax7.set_ylim(0, 60)
 ax7.set_xticks([])
 ax7.annotate("F", xy=(0,1.1), xycoords="axes fraction",
                     xytext=(5,-5), textcoords="offset points",
@@ -264,7 +264,7 @@ print ('N cells with constraint on Vend:', len(ap_onsets[idx]))
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
 # fig.savefig(save_path + "fig1.pdf", bbox_inches='tight')
 
-# fig.savefig("fig1.pdf", bbox_inches='tight')
+# fig.savefig(save_path + "fig1.pdf", bbox_inches='tight')
 
 # fig.savefig(save_path + "fig1.png", dpi=300)
 

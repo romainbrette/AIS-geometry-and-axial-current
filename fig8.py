@@ -269,7 +269,7 @@ ax8 = fig.add_subplot(gs[1, 2])
 #covariation
 ax9 = fig.add_subplot(gs[2, 0])
 ax10 = fig.add_subplot(gs[2, 1:3])
-ax11 = fig.add_subplot(gs[2, 3:5])
+ax11 = fig.add_subplot(gs[2, 3])
 
 ### Threshold adaptation
 
@@ -499,7 +499,7 @@ ax10.annotate("K", xy=(0,1.1), xycoords="axes fraction",
                     fontsize=12, weight='bold')
 
 ### Panel L: estimation of ka from fit
-sns.boxplot(y=slope_per_cell, color='gray', width=0.3, ax=ax11)
+sns.boxplot(y=slope_per_cell, color='gray', ax=ax11)
 sns.swarmplot(y=slope_per_cell,  color='0.2', ax=ax11)
 sns.despine(bottom=True, ax=ax11)
 ax11.set_ylabel('$k_a$ (mV)')
@@ -518,8 +518,9 @@ print('ka median:', nanmedian(slope_per_cell))
 
 ### Saving the figure
 save_path = '/Users/sarah/Dropbox/Spike initiation/PhD projects/Axonal current and AIS geometry/Paper/Figures/'
-# fig.savefig(save_path + "fig8.pdf", bbox_inches='tight')
 
-# fig.savefig(save_path + "fig8.pdf", bbox_inches='tight')
+# fig.savefig(save_path + "fig8_bis.pdf", bbox_inches='tight')
 
-# fig.savefig(save_path + "fig8.png", dpi=300)
+# fig.savefig(save_path + "fig8_bis.pdf", bbox_inches='tight')
+
+# fig.savefig(save_path + "fig8_bis.png", dpi=300)

@@ -20,6 +20,9 @@ from matplotlib import gridspec
 from trace_analysis import *
 from scipy.interpolate import CubicSpline
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+from vc_test_pulse_analysis import *
+from na_currents_analysis import *
+from vc_test_pulse_analysis import *
 
 rcParams['axes.spines.right'] = False
 rcParams['axes.spines.top'] = False
@@ -223,7 +226,7 @@ ax9 = fig.add_subplot(gs[8])
 i = -6
 idx_sort = argsort(v0_per_cell[i])
 
-ax1.set_ylabel('$-I_p$')
+ax1.set_ylabel('$-I_p$ (nA)')
 ax1.set_xlabel('$V_0$ (mV)')
 ax1.plot(v0_per_cell[i][idx_sort], -ia_per_cell[i][idx_sort], '-o', color = cols[14])
 ax1.set_ylim(0,4)
@@ -254,6 +257,95 @@ ax3.annotate("C", xy=(0,1.1), xycoords="axes fraction",
                     xytext=(5,-5), textcoords="offset points",
                     ha="left", va="top",
                     fontsize=12, weight='bold')
+
+### Panel C inset:
+    
+date = dates_per_cell[i]
+retina = retina_per_cell[i]
+cell = cell_per_cell[i]
+cell_name = '%i %s %i' %(date, retina, cell)
+
+### Loading the data
+path_to_cell = glob2.glob('/Users/sarah/Documents/Data/Martijn Sierksma/' + str(int(date)) + '*' + '/retina '+ str(retina) +'/cell ' + str(int(cell)))[0]
+
+### -60 mV
+abf60 = pyabf.ABF(path_to_cell + '/VC threshold adaptation/2020_02_14_0032.abf')
+fs60 = abf60.dataRate  * Hz # sampling rate
+dt60 = 1./fs60
+
+t = dt60*arange(len(abf60.sweepY)) 
+I = []
+V = []
+
+for sweepNumber in abf60.sweepList:
+    abf60.setSweep(sweepNumber)
+    I.append(abf60.sweepY)
+    V.append(abf60.sweepC*mV)
+
+### Removing passive component
+I_corr_pass, I_cut, t_cut = p5_subtraction(date, retina, cell, dt60, I, V, rec_name=str(int(33)).zfill(4))
+
+### Loading the data
+path_to_cell = glob2.glob('/Users/sarah/Documents/Data/Martijn Sierksma/' + str(int(date)) + '*' + '/retina '+ str(retina) +'/cell ' + str(int(cell)))[0]
+
+### -60 mV
+abf40 = pyabf.ABF(path_to_cell + '/VC threshold adaptation/2020_02_14_0034.abf')
+fs40 = abf40.dataRate  * Hz # sampling rate
+dt40 = 1./fs40
+
+t = dt40*arange(len(abf60.sweepY)) 
+I40 = []
+V40 = []
+
+for sweepNumber in abf40.sweepList:
+    abf40.setSweep(sweepNumber)
+    I40.append(abf40.sweepY)
+    V40.append(abf40.sweepC*mV)
+
+### Removing passive component
+I_corr_pass40, I_cut40, t_cut40 = p5_subtraction(date, retina, cell, dt40, I40, V40, rec_name=str(int(33)).zfill(4))
+
+### Loading the data
+path_to_cell = glob2.glob('/Users/sarah/Documents/Data/Martijn Sierksma/' + str(int(date)) + '*' + '/retina '+ str(retina) +'/cell ' + str(int(cell)))[0]
+
+### -60 mV
+abf50 = pyabf.ABF(path_to_cell + '/VC threshold adaptation/2020_02_14_0033.abf')
+fs50 = abf50.dataRate  * Hz # sampling rate
+dt50 = 1./fs50
+
+t = dt50*arange(len(abf50.sweepY)) 
+I50 = []
+V50 = []
+
+for sweepNumber in abf50.sweepList:
+    abf50.setSweep(sweepNumber)
+    I50.append(abf50.sweepY)
+    V50.append(abf50.sweepC*mV)
+
+### Removing passive component
+I_corr_pass50, I_cut50, t_cut50 = p5_subtraction(date, retina, cell, dt50, I50, V50, rec_name=str(int(33)).zfill(4))
+
+### IV curves
+I_peaks,  Vc_peaks, idx_peak_ax_current,  t_peaks = plot_IV(date, retina, cell, dt50, I_corr_pass50, V, 0, str(int(6)).zfill(4))
+Vc_peaks = array(Vc_peaks/mV)
+I_peaks = array(I_peaks)
+
+# inset: exmaple of APs
+axins = inset_axes(ax3, width=1.2, height=1, loc=2)
+axins.plot(t_cut/ms, I_corr_pass[10] *1e-3, 'k', alpha=0.3)
+axins.plot(t_cut40/ms, I_corr_pass40[7] *1e-3, 'k', )
+axins.plot(t_cut50/ms, I_corr_pass50[7] *1e-3, 'k', alpha=0.6 )
+axins.set_xlim(0,5)
+sns.despine(bottom=True, left=True, ax=axins)
+axins.set_xticks([])
+axins.set_yticks([])
+axins.plot(linspace(3.5,4.5,10), -2.5*ones(10), 'k-', linewidth=2)
+axins.plot(4.5*ones(10), linspace(-2.5,-2,10), 'k-', linewidth=2)
+axins.text(3.5, -3,'1 ms',color='k', fontsize=8)
+axins.text(4.75, -2.5,'0.5 nA',color='k', fontsize=8)
+# axins.set_xlabel('t (ms)')
+#axins.set_xlim(0,5)
+# axins.set_ylabel('I (nA)')
 
 ### Panel D: current vs charge attenuation
 # ax4.plot(charge_attenuation, current_attenuation, 'k.')
@@ -358,20 +450,20 @@ ax6.annotate("F", xy=(0,1.1), xycoords="axes fraction",
 axins = inset_axes(ax6, width=.8, height=0.6, loc=1)
 # first spike
 idx_spike1 = int(spike_times[0]/dt)
-f = data[idx_spike1-70:idx_spike1+50]
-t_spike = t[idx_spike1-70:idx_spike1+50]/ms - t[idx_spike1-70]/ms
+f = data[idx_spike1-150:idx_spike1+50]
+t_spike = t[idx_spike1-150:idx_spike1+50]/ms - t[idx_spike1-150]/ms
 axins.plot(t_spike, f, color=cols[0])
-idx_spike2 = int(spike_times[-1]/dt)
-f = data[idx_spike2-70:idx_spike2+50]
-t_spike = t[idx_spike2-70:idx_spike2+50]/ms - t[idx_spike2-70]/ms
+idx_spike2 = int(spike_times[min_peak-1]/dt)
+f = data[idx_spike2-150:idx_spike2+50]
+t_spike = t[idx_spike2-150:idx_spike2+50]/ms - t[idx_spike2-150]/ms
 axins.plot(t_spike, f, color=cols[30])
 sns.despine(bottom=True, left=True, ax=axins)
 axins.set_xticks([])
 axins.set_yticks([])
-axins.plot(linspace(3.5,4.5,10), 30*ones(10), 'k-', linewidth=2)
-axins.plot(4.5*ones(10), linspace(20,30,10), 'k-', linewidth=2)
-axins.text(3, 40,'1 ms',color='k', fontsize=8)
-axins.text(5, 20,'10 mV',color='k', fontsize=8)
+axins.plot(linspace(6,7,10), 30*ones(10), 'k-', linewidth=2)
+axins.plot(7*ones(10), linspace(20,30,10), 'k-', linewidth=2)
+axins.text(5, 40,'1 ms',color='k', fontsize=8)
+axins.text(7.5, 20,'10 mV',color='k', fontsize=8)
 
 
 # Panel G: phase plots
@@ -567,7 +659,7 @@ ax9.annotate("H", xy=(0,1.1), xycoords="axes fraction",
                     ha="left", va="top",
                     fontsize=12, weight='bold')
 
-tight_layout()
+fig.tight_layout()
     
 show()
 
