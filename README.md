@@ -1,5 +1,7 @@
 # AIS geometry and axial current
 
+Codes corresponding to the paper "Electrical match between initial segment and somatodendritic compartment for action potential backpropagation in retinal ganglion cells" by Goethals et al., 2021
+
 ### Requirements
 
 In addition to standard scientific packages (scipy, matplotlib), this code requires:
